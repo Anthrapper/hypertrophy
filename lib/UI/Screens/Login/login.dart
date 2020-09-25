@@ -1,0 +1,177 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hypertrophy/Services/Controllers/controllers.dart';
+import 'package:hypertrophy/Services/Validators/validator.dart';
+import 'package:hypertrophy/UI/Widgets/widgets.dart';
+import 'package:hypertrophy/utilitis/utils.dart';
+
+class LoginPage extends StatelessWidget {
+  final LoginController _loginController = Get.put(LoginController());
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+              HexColorUtils.getColorFromHex(CustomColors.background),
+              HexColorUtils.getColorFromHex(
+                CustomColors.bg,
+              ),
+            ])),
+        child: SafeArea(
+          child: ListView(
+            children: [
+              _heading(),
+              _loginForm(),
+              _bottomText(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _bottomText() {
+    return Center(
+      child: Padding(
+        padding: EdgeInsets.only(top: 120),
+        child: GestureDetector(
+          onTap: () {
+            print('sign up');
+          },
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text: "New Here ? ",
+                  style: GoogleFonts.michroma(
+                    textStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ),
+                TextSpan(
+                  text: " Sign Up",
+                  style: GoogleFonts.michroma(
+                    textStyle: TextStyle(
+                      color:
+                          HexColorUtils.getColorFromHex(CustomColors.primary),
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _loginForm() {
+    return Form(
+      key: _formKey,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20, 80, 20, 10),
+        child: CustomCard(
+          widget: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 35),
+                child: Center(
+                  child: Text(
+                    'WELCOME BACK',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
+                      fontSize: 20,
+                      letterSpacing: 1.6,
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(13, 40, 13, 10),
+                child: CustomTextField(
+                  hintText: 'Email',
+                  validator: (val) {
+                    Validators().emailValidator(val);
+                  },
+                  controller: _loginController.emailController,
+                  secureText: false,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(13, 20, 13, 10),
+                child: CustomTextField(
+                  controller: _loginController.passController,
+                  hintText: 'Password',
+                  secureText: true,
+                  suffix: FaIcon(
+                    Icons.remove_red_eye_outlined,
+                    color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  if (_formKey.currentState.validate()) {
+                    print('clicked');
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(13, 25, 13, 5),
+                  child: CustomButton(
+                    text: 'LOGIN',
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+                  child: Text(
+                    'Forgot Password',
+                    style: TextStyle(
+                      color:
+                          HexColorUtils.getColorFromHex(CustomColors.hintText),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _heading() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30),
+      child: Center(
+        child: Text(
+          'LOGIN',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
+            fontSize: 23,
+            letterSpacing: 2,
+          ),
+        ),
+      ),
+    );
+  }
+}
