@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilitis/utils.dart';
 
 class OnBoardingFour extends StatelessWidget {
@@ -34,18 +35,15 @@ class OnBoardingFour extends StatelessWidget {
           Positioned(
             left: 20,
             top: Get.height / 1.8,
-            child: Text(
-              'Get Started',
-              style: TextStyle(
-                fontSize: 38,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            child: CustomText(
+              text: 'Get Started',
+              color: Colors.white,
+              width: Get.width / 1.4,
             ),
           ),
           Positioned(
             left: 20,
-            top: Get.height / 1.53,
+            top: Get.height / 1.5,
             child: Container(
               width: Get.width * 0.9,
               height: Get.height * 0.055,
@@ -62,7 +60,6 @@ class OnBoardingFour extends StatelessWidget {
                     color: HexColorUtils.getColorFromHex(
                       CustomColors.cardColor,
                     ),
-                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -86,7 +83,6 @@ class OnBoardingFour extends StatelessWidget {
                     color: HexColorUtils.getColorFromHex(
                       CustomColors.hintText,
                     ),
-                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

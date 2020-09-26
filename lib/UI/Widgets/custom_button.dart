@@ -27,7 +27,7 @@ class CustomButton extends StatelessWidget {
           text,
           style: TextStyle(
             color: HexColorUtils.getColorFromHex(CustomColors.primary),
-            fontSize: 21,
+            fontSize: Get.width / 22,
             letterSpacing: 1.4,
             fontWeight: FontWeight.bold,
           ),
