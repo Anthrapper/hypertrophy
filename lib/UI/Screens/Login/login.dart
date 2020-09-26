@@ -41,7 +41,7 @@ class LoginPage extends StatelessWidget {
   Widget _bottomText() {
     return Center(
       child: Padding(
-        padding: EdgeInsets.only(top: 120),
+        padding: EdgeInsets.only(top: Get.height / 9),
         child: GestureDetector(
           onTap: () {
             print('sign up');
@@ -83,27 +83,30 @@ class LoginPage extends StatelessWidget {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(20, 80, 20, 10),
+        padding: EdgeInsets.fromLTRB(20, Get.height / 6, 20, 0),
         child: CustomCard(
           widget: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 35),
+                padding: EdgeInsets.only(top: Get.height / 25),
                 child: Center(
-                  child: Text(
-                    'WELCOME BACK',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                      fontSize: 20,
-                      letterSpacing: 1.6,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      'WELCOME BACK',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.whiteText),
+                        fontSize: Get.width / 21,
+                        letterSpacing: 1.6,
+                      ),
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(13, 40, 13, 10),
+                padding: EdgeInsets.fromLTRB(13, Get.height / 25, 13, 10),
                 child: CustomTextField(
                   hintText: 'Email',
                   validator: (val) {
@@ -141,10 +144,11 @@ class LoginPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {},
                 child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, 40, 20, 20),
+                  padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),
                   child: Text(
                     'Forgot Password',
                     style: TextStyle(
+                      fontSize: Get.width / 33,
                       color:
                           HexColorUtils.getColorFromHex(CustomColors.hintText),
                     ),
@@ -160,14 +164,14 @@ class LoginPage extends StatelessWidget {
 
   Widget _heading() {
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: EdgeInsets.only(top: Get.height / 50),
       child: Center(
         child: Text(
           'LOGIN',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
-            fontSize: 23,
+            fontSize: Get.width / 19,
             letterSpacing: 2,
           ),
         ),

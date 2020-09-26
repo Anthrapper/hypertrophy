@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilitis/utils.dart';
 
 class OnBoardingThree extends StatelessWidget {
@@ -34,47 +35,37 @@ class OnBoardingThree extends StatelessWidget {
           Positioned(
             left: 20,
             top: Get.height / 1.8,
-            child: Text(
-              'Complete',
-              style: TextStyle(
-                fontSize: 38,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            child: CustomText(
+              text: 'Complete',
+              color: Colors.white,
+              width: Get.width / 1.6,
             ),
           ),
           Positioned(
             left: 20,
             top: Get.height / 1.6,
-            child: Text(
-              'With',
-              style: TextStyle(
-                fontSize: 38,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+            child: CustomText(
+              text: 'With',
+              color: Colors.white,
+              width: Get.width / 3.1,
             ),
           ),
           Positioned(
             left: 20,
             top: Get.height / 1.45,
-            child: Text(
-              'Progress',
-              style: TextStyle(
-                  fontSize: 38,
-                  color: HexColorUtils.getColorFromHex(CustomColors.primary),
-                  fontWeight: FontWeight.bold),
+            child: CustomText(
+              text: 'Progress',
+              color: HexColorUtils.getColorFromHex(CustomColors.primary),
+              width: Get.width / 1.6,
             ),
           ),
           Positioned(
             left: 20,
-            top: Get.height / 1.3,
-            child: Text(
-              'Tracking',
-              style: TextStyle(
-                  fontSize: 38,
-                  color: HexColorUtils.getColorFromHex(CustomColors.primary),
-                  fontWeight: FontWeight.bold),
+            top: Get.height / 1.32,
+            child: CustomText(
+              text: 'Tracking',
+              color: HexColorUtils.getColorFromHex(CustomColors.primary),
+              width: Get.width / 1.7,
             ),
           ),
         ],

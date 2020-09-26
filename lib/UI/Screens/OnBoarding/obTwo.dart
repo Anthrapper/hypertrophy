@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilitis/utils.dart';
 
 class OnBoardingTwo extends StatelessWidget {
@@ -34,36 +35,28 @@ class OnBoardingTwo extends StatelessWidget {
           Positioned(
             left: 20,
             top: Get.height / 1.8,
-            child: Text(
-              'Personalized',
-              style: TextStyle(
-                fontSize: 38,
-                color: HexColorUtils.getColorFromHex(CustomColors.primary),
-                fontWeight: FontWeight.bold,
-              ),
+            child: CustomText(
+              text: 'Personalized',
+              color: HexColorUtils.getColorFromHex(CustomColors.primary),
+              width: Get.width / 1.3,
             ),
           ),
           Positioned(
             left: 20,
             top: Get.height / 1.6,
-            child: Text(
-              'Diet',
-              style: TextStyle(
-                fontSize: 38,
-                color: HexColorUtils.getColorFromHex(CustomColors.primary),
-                fontWeight: FontWeight.bold,
-              ),
+            child: CustomText(
+              text: 'Diet',
+              color: HexColorUtils.getColorFromHex(CustomColors.primary),
+              width: Get.width / 4,
             ),
           ),
           Positioned(
             left: 20,
             top: Get.height / 1.45,
-            child: Text(
-              'Plans',
-              style: TextStyle(
-                  fontSize: 38,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+            child: CustomText(
+              text: 'Plans',
+              color: Colors.white,
+              width: Get.width / 3.2,
             ),
           ),
         ],

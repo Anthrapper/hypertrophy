@@ -20,7 +20,6 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         border: Border.all(
           color: HexColorUtils.getColorFromHex(CustomColors.background),
@@ -30,11 +29,11 @@ class CustomTextField extends StatelessWidget {
           const Radius.circular(13.0),
         ),
       ),
-
       child: TextFormField(
         autofocus: false,
         style: TextStyle(
           color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+          fontSize: 11,
         ),
         textAlign: TextAlign.justify,
         controller: controller,
