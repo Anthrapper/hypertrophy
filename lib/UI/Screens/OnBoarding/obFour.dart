@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
 class OnBoardingFour extends StatelessWidget {
   @override
@@ -46,7 +46,7 @@ class OnBoardingFour extends StatelessWidget {
             top: Get.height / 1.5,
             child: Container(
               width: Get.width * 0.9,
-              height: Get.height * 0.055,
+              height: Get.height * 0.065,
               child: FlatButton(
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(22.0)),
@@ -68,14 +68,16 @@ class OnBoardingFour extends StatelessWidget {
           ),
           Positioned(
             left: 20,
-            top: Get.height / 1.35,
+            top: Get.height / 1.31,
             child: Container(
               width: Get.width * 0.9,
-              height: Get.height * 0.055,
+              height: Get.height * 0.065,
               child: FlatButton(
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(22.0)),
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed('/signup');
+                },
                 color: HexColorUtils.getColorFromHex(CustomColors.cardColor),
                 child: Text(
                   'SIGN UP',

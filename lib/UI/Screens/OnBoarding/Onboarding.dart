@@ -5,8 +5,8 @@ import 'package:hypertrophy/UI/Screens/OnBoarding/obFour.dart';
 import 'package:hypertrophy/UI/Screens/OnBoarding/obOne.dart';
 import 'package:hypertrophy/UI/Screens/OnBoarding/obThree.dart';
 import 'package:hypertrophy/UI/Screens/OnBoarding/obTwo.dart';
-import 'package:hypertrophy/utilitis/constants/colors.dart';
-import 'package:hypertrophy/utilitis/hexColor.dart';
+import 'package:hypertrophy/utilities/constants/colors.dart';
+import 'package:hypertrophy/utilities/hexColor.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override

@@ -1,8 +1,9 @@
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:get/get.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   final String hintText;
   final TextEditingController controller;
   final bool secureText;
@@ -18,6 +19,11 @@ class CustomTextField extends StatelessWidget {
       this.suffix});
 
   @override
+  _CustomTextFieldState createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -29,33 +35,32 @@ class CustomTextField extends StatelessWidget {
           const Radius.circular(13.0),
         ),
       ),
-      child: TextFormField(
-        autofocus: false,
-        style: TextStyle(
-          color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-          fontSize: 11,
-        ),
-        textAlign: TextAlign.justify,
-        controller: controller,
-        cursorColor: HexColorUtils.getColorFromHex(CustomColors.hintText),
-        obscureText: secureText,
-        validator: validator,
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          suffixIcon: Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: suffix,
-          ),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: icon,
-          ),
-          hintText: hintText,
-          hintStyle: TextStyle(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: TextFormField(
+          autofocus: false,
+          style: TextStyle(
             color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.1,
+            fontSize: 11,
+          ),
+          textAlign: TextAlign.justify,
+          controller: widget.controller,
+          cursorColor: HexColorUtils.getColorFromHex(CustomColors.hintText),
+          obscureText: widget.secureText,
+          validator: widget.validator,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            suffixIcon: Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: widget.suffix,
+            ),
+            hintText: widget.hintText,
+            hintStyle: TextStyle(
+              color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+              fontSize: Get.width / 45,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.1,
+            ),
           ),
         ),
       ),
