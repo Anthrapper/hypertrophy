@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertrophy/utilitis/hexColor.dart';
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:hypertrophy/utilities/hexColor.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
 class Validators {
   validate() {

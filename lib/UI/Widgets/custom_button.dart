@@ -1,4 +1,4 @@
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,8 +17,9 @@ class CustomButton extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: HexColorUtils.getColorFromHex(CustomColors.shadow),
-            blurRadius: 10.0,
-            offset: Offset(3, 10),
+            offset: const Offset(0, 1),
+            blurRadius: 4,
+            spreadRadius: 8,
           ),
         ],
       ),

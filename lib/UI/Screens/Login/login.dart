@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertrophy/Services/Controllers/controllers.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController _loginController = Get.put(LoginController());
@@ -14,18 +14,8 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-              HexColorUtils.getColorFromHex(CustomColors.background),
-              HexColorUtils.getColorFromHex(
-                CustomColors.bg,
-              ),
-            ])),
-        child: SafeArea(
+      body: Background(
+        widget: SafeArea(
           child: ListView(
             children: [
               _heading(),
@@ -39,40 +29,37 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget _bottomText() {
-    return Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: Get.height / 9),
-        child: GestureDetector(
-          onTap: () {
-            print('sign up');
-          },
-          child: RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              children: <TextSpan>[
-                TextSpan(
-                  text: "New Here ? ",
-                  style: GoogleFonts.michroma(
-                    textStyle: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.2,
-                    ),
+    return Padding(
+      padding: EdgeInsets.only(top: Get.height / 15),
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed('/signup');
+        },
+        child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                text: "New Here ? ",
+                style: GoogleFonts.michroma(
+                  textStyle: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
                   ),
                 ),
-                TextSpan(
-                  text: " Sign Up",
-                  style: GoogleFonts.michroma(
-                    textStyle: TextStyle(
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.primary),
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.2,
-                    ),
+              ),
+              TextSpan(
+                text: " Sign Up",
+                style: GoogleFonts.michroma(
+                  textStyle: TextStyle(
+                    color: HexColorUtils.getColorFromHex(CustomColors.primary),
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.2,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -83,7 +70,7 @@ class LoginPage extends StatelessWidget {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(20, Get.height / 6, 20, 0),
+        padding: EdgeInsets.fromLTRB(20, Get.height / 7.5, 20, 0),
         child: CustomCard(
           widget: Column(
             children: [

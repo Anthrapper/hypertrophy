@@ -1,4 +1,4 @@
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {

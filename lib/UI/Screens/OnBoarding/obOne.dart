@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 
-import 'package:hypertrophy/utilitis/utils.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
 class OnBoardingOne extends StatelessWidget {
   @override
