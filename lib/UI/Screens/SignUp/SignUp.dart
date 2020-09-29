@@ -101,10 +101,12 @@ class SignUp extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  // if (_formKey.currentState.validate()) {
-                  //   print('clicked');
-                  // }
-                  Get.toNamed('/genderselection');
+                  if (_formKey.currentState.validate()) {
+                    Loading().showLoading();
+                    _signUpController.signUp(
+                        _signUpController.emailController.text,
+                        _signUpController.passController.text);
+                  }
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(13, Get.height / 35, 13, 25),

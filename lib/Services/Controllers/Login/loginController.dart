@@ -1,26 +1,36 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
-class SignUpController extends GetxController {
+class LoginController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
   Rx<User> _fireBaseUser = Rx<User>();
-  void signUp(String email, String password) async {
+
+  TextEditingController emailController;
+  TextEditingController passController;
+  @override
+  void onInit() {
+    _fireBaseUser.bindStream(_auth.authStateChanges());
+    emailController = TextEditingController();
+    passController = TextEditingController();
+    super.onInit();
+  }
+
+  void login(String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((authResult) => print(authResult.user));
       if (Get.isDialogOpen) {
         Get.back();
       }
-      Get.toNamed('/genderselection');
     } catch (e) {
       if (Get.isDialogOpen) {
         Get.back();
       }
       Get.snackbar(
-        'Error creating the account',
+        'Error logging in',
         e.message,
         snackPosition: SnackPosition.BOTTOM,
         colorText: Colors.white,
@@ -41,26 +51,10 @@ class SignUpController extends GetxController {
     }
   }
 
-  TextEditingController emailController;
-  TextEditingController fname;
-  TextEditingController lname;
-  TextEditingController passController;
-  @override
-  void onInit() {
-    _fireBaseUser.bindStream(_auth.authStateChanges());
-    emailController = TextEditingController();
-    passController = TextEditingController();
-    fname = TextEditingController();
-    lname = TextEditingController();
-    super.onInit();
-  }
-
   @override
   void onClose() {
     emailController?.dispose();
     passController?.dispose();
-    fname?.dispose();
-    lname?.dispose();
     super.onClose();
   }
 }

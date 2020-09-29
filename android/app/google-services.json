@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "552099033931",
+    "firebase_url": "https://hypertrohy-503b9.firebaseio.com",
+    "project_id": "hypertrohy-503b9",
+    "storage_bucket": "hypertrohy-503b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:552099033931:android:b4b4f5213fdb5dc70e2ece",
+        "android_client_info": {
+          "package_name": "com.axactstudios.hypertrophy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "552099033931-7e8og60p877fjidmi4q4aob2lbp8r1sk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAW3bK7owrCwZBd1l5iVwuBqKm87-pGuU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "552099033931-7e8og60p877fjidmi4q4aob2lbp8r1sk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
