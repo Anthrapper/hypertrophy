@@ -127,7 +127,10 @@ class LoginPage extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   if (_formKey.currentState.validate()) {
-                    print('clicked');
+                    Loading().showLoading();
+                    _loginController.login(
+                        _loginController.emailController.text,
+                        _loginController.passController.text);
                   }
                 },
                 child: Padding(

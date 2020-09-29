@@ -1,4 +1,4 @@
-export 'loginController.dart';
+export 'Login/loginController.dart';
 export 'onBoardController.dart';
 export 'BodyInfoControllers/bodyinfoController.dart';
 export 'signUpController.dart';
