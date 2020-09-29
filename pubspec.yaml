@@ -28,6 +28,7 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   get: ^3.11.1
   auto_size_text: ^2.1.0
+  search_widget:
 
 dev_dependencies:
   flutter_test:

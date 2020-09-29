@@ -1,9 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertrophy/Services/Controllers/signUpController.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
+import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
@@ -46,7 +49,7 @@ class SignUp extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: HexColorUtils.getColorFromHex(
                             CustomColors.whiteText),
-                        fontSize: Get.width / 21,
+
                         letterSpacing: 1.6,
                       ),
                     ),
@@ -105,6 +108,7 @@ class SignUp extends StatelessWidget {
                   //   print('clicked');
                   // }
                   Get.toNamed('/genderselection');
+
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(13, Get.height / 35, 13, 25),
