@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/BodyInfo.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/GenderSelection/GenderSelection.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/Goal/Goal.dart';
+import 'package:hypertrophy/UI/Screens/Diet/diet.dart';
 import 'package:hypertrophy/UI/Screens/OnBoarding/Onboarding.dart';
 import 'package:hypertrophy/UI/Screens/Login/login.dart';
+import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/UI/Screens/SignUp/SignUp.dart';
 
 class Routes {
@@ -31,6 +33,7 @@ class Routes {
     GetPage(
       name: '/goal',
       page: () => Goal(),
-    )
+    ),
+
   ];
 }

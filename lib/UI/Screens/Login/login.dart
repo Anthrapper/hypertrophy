@@ -1,15 +1,22 @@
+
+
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertrophy/Services/Controllers/controllers.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
+import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
 class LoginPage extends StatelessWidget {
   final LoginController _loginController = Get.put(LoginController());
   final _formKey = GlobalKey<FormState>();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +39,10 @@ class LoginPage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: Get.height / 15),
       child: GestureDetector(
-        onTap: () {
-          Get.toNamed('/signup');
+          onTap: () {
+          Get.toNamed('/genderselection');
+
+
         },
         child: RichText(
           textAlign: TextAlign.center,
@@ -109,9 +118,9 @@ class LoginPage extends StatelessWidget {
                   controller: _loginController.passController,
                   hintText: 'Password',
                   secureText: true,
-                  suffix: FaIcon(
+                suffix: FaIcon(
                     Icons.remove_red_eye_outlined,
-                    color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+                   color: HexColorUtils.getColorFromHex(CustomColors.hintText),
                   ),
                 ),
               ),
@@ -125,11 +134,14 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(13, 25, 13, 5),
                   child: CustomButton(
                     text: 'LOGIN',
+
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+
+                },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),
                   child: Text(

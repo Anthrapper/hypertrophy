@@ -13,4 +13,5 @@ class CustomColors {
   static const String primary = "#8AE82D";
   static const String text1 = '#A3A3A3';
   static const String shadow = '#303030';
+
 }

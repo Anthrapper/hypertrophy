@@ -30,7 +30,7 @@ class CustomDropDown extends StatelessWidget {
         ),
         isExpanded: false,
         autofocus: false,
-        icon: Icon(Icons.arrow_drop_down_sharp),
+       // icon: Icon(Icons.arrow_drop_down_sharp),
         iconEnabledColor: HexColorUtils.getColorFromHex(CustomColors.hintText),
         iconDisabledColor: Colors.grey[200],
         iconSize: 20,
