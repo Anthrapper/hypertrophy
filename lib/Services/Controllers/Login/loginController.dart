@@ -21,7 +21,13 @@ class LoginController extends GetxController {
     try {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then((authResult) => print(authResult.user));
+          .then(
+        (authResult) {
+          print(authResult.user);
+          // Get.offNamedUntil('/leaderboard', (route) => false);
+          Get.toNamed('/leaderboard');
+        },
+      );
       if (Get.isDialogOpen) {
         Get.back();
       }

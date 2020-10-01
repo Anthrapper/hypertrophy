@@ -11,14 +11,13 @@ class GenderSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Background(
-        widget: SafeArea(
-          child: Column(
-            children: [
-              _heading(),
-              _genderSelection(),
-            ],
-          ),
+      backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
+      body: SafeArea(
+        child: Column(
+          children: [
+            _heading(),
+            _genderSelection(),
+          ],
         ),
       ),
     );
@@ -63,7 +62,9 @@ class GenderSelection extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 if (_genderController.selected.value == false) {
-                  Get.toNamed('/bodyinfo');
+                  _genderController.femaleSelected.value
+                      ? _genderController.genderSelect('MALE')
+                      : _genderController.genderSelect('FEMALE');
                 } else {
                   Get.snackbar('Error', 'Please choose a gender to continue',
                       snackPosition: SnackPosition.BOTTOM);

@@ -13,14 +13,13 @@ class BodyInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Background(
-        widget: SafeArea(
-          child: ListView(
-            children: [
-              _heading(),
-              _bodyForm(),
-            ],
-          ),
+      backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            _heading(),
+            _bodyForm(),
+          ],
         ),
       ),
     );
@@ -61,50 +60,51 @@ class BodyInfo extends StatelessWidget {
                   secureText: false,
                 ),
               ),
-              Stack(
+              Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        13, Get.height / 40, Get.width / 1.9, 10),
-                    child: CustomTextField(
-                      hintText: 'Height',
-                      controller: _bodyController.weight,
-                      secureText: false,
+                  SizedBox(
+                    height: Get.height / 10,
+                    width: Get.width / 2,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          13, Get.height / 40, Get.width / 8, 10),
+                      child: CustomTextField(
+                        hintText: 'Height',
+                        controller: _bodyController.height,
+                        secureText: false,
+                      ),
                     ),
                   ),
-                  Positioned(
-                    left: Get.width / 2.6,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: Get.height / 40),
-                      child: CustomDropDown(
-                        hint: 'Cm',
-                        dText: '1',
-                        data: dropdown,
-                      ),
+                  SizedBox(
+                    child: CustomDropDown(
+                      hint: 'Cm',
+                      dText: '1',
+                      data: dropdown,
                     ),
                   ),
                 ],
               ),
-              Stack(
+              Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        13, Get.height / 40, Get.width / 1.9, 10),
-                    child: CustomTextField(
-                      hintText: 'Weight',
-                      controller: _bodyController.weight,
-                      secureText: false,
+                  SizedBox(
+                    height: Get.height / 10,
+                    width: Get.width / 2,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          13, Get.height / 40, Get.width / 8, 10),
+                      child: CustomTextField(
+                        hintText: 'Weight',
+                        controller: _bodyController.weight,
+                        secureText: false,
+                      ),
                     ),
                   ),
-                  Positioned(
-                    left: Get.width / 2.6,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: Get.height / 40),
-                      child: CustomDropDown(
-                        hint: 'Kg',
-                        dText: '1',
-                        data: dropdown,
-                      ),
+                  SizedBox(
+                    // height: Get.height / 10,
+                    child: CustomDropDown(
+                      hint: 'Kg',
+                      dText: '1',
+                      data: dropdown,
                     ),
                   ),
                 ],
