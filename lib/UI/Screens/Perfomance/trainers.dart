@@ -48,7 +48,9 @@ class _TrainerPageState extends State<TrainerPage> {
           // );
 
           SafeArea(
-        child: Column(
+        child: ListView(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
           children: [
             _heading(),
             _search(),
@@ -64,7 +66,7 @@ class _TrainerPageState extends State<TrainerPage> {
       padding: EdgeInsets.only(top: Get.height / 50),
       child: Center(
         child: Text(
-          'TRAINERS',
+          'TRAINING',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
@@ -286,11 +288,10 @@ class _TrainerPageState extends State<TrainerPage> {
                         child: ClipPolygon(
                           sides: 6,
                           borderRadius: 5,
-                          child: Image(
-                            image: AssetImage('assets/images/Polygon 1.png'),
+                          child: Image.network(getDocs['img'],height: 120,width: 120,),
                           ),
                         ),
-                      ),
+
                     ],
                   ),
                 );

@@ -129,7 +129,7 @@ class LoginPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed('/link');
+                  Get.toNamed('/program');
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),

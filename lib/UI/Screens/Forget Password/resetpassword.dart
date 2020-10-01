@@ -110,7 +110,7 @@ secureText: true,
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
-            fontSize: Get.width / 19,
+            fontSize: Get.width / 28,
             letterSpacing: 1.6,
           ),
         ),
