@@ -1,3 +1,5 @@
+
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -119,7 +121,7 @@ class _TrainerPageState extends State<TrainerPage> {
 
     return Container(
       child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
+          stream: FirebaseFirestore.instance.collection('trainer').orderBy('Rating',descending: true).snapshots(),
           builder: (context, snapshot) {
             return ListView.builder(
               scrollDirection: Axis.vertical,

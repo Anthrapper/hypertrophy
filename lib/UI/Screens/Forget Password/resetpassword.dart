@@ -7,7 +7,7 @@ import 'package:hypertrophy/Services/Validators/validator.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
-class LoginPage extends StatelessWidget {
+class ResetPage extends StatelessWidget {
   final LoginController _loginController = Get.put(LoginController());
   final _formKey = GlobalKey<FormState>();
 
@@ -19,69 +19,35 @@ class LoginPage extends StatelessWidget {
         child: ListView(
           children: [
             _heading(),
-            _loginForm(),
-            _bottomText(),
+            _resetForm(),
+
           ],
         ),
       ),
     );
   }
 
-  Widget _bottomText() {
-    return Padding(
-      padding: EdgeInsets.only(top: Get.height / 15),
-      child: GestureDetector(
-        onTap: () {
-          Get.toNamed('/signup');
-        },
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            children: <TextSpan>[
-              TextSpan(
-                text: "New Here ? ",
-                style: GoogleFonts.michroma(
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.2,
-                  ),
-                ),
-              ),
-              TextSpan(
-                text: " Sign Up",
-                style: GoogleFonts.michroma(
-                  textStyle: TextStyle(
-                    color: HexColorUtils.getColorFromHex(CustomColors.primary),
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1.2,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
-  Widget _loginForm() {
+
+  Widget _resetForm() {
     return Form(
       key: _formKey,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(20, Get.height / 7.5, 20, 0),
+        padding: EdgeInsets.fromLTRB(20, Get.height / 6, 20, 0),
         child: CustomCard(
+
           widget: Column(
             children: [
               Padding(
                 padding: EdgeInsets.only(top: Get.height / 25),
                 child: Center(
                   child: Text(
-                    'WELCOME BACK',
+                    'RESET PASSWORD',
+
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
+                      HexColorUtils.getColorFromHex(CustomColors.whiteText),
                       fontSize: Get.width / 21,
                       letterSpacing: 1.6,
                     ),
@@ -91,7 +57,7 @@ class LoginPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(13, Get.height / 25, 13, 10),
                 child: CustomTextField(
-                  hintText: 'Email',
+                  hintText: 'New Password',
                   validator: (val) {
                     Validators().emailValidator(val);
                   },
@@ -103,8 +69,8 @@ class LoginPage extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(13, 20, 13, 10),
                 child: CustomTextField(
                   controller: _loginController.passController,
-                  hintText: 'Password',
-                  secureText: true,
+                  hintText: 'Confirm Password',
+secureText: true,
                   // suffix: FaIcon(
                   //   Icons.remove_red_eye_outlined,
                   //   color: HexColorUtils.getColorFromHex(CustomColors.hintText),
@@ -121,28 +87,13 @@ class LoginPage extends StatelessWidget {
                   }
                 },
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(13, 25, 13, 5),
+                  padding:  EdgeInsets.fromLTRB(13, 25, 13, Get.height/22),
                   child: CustomButton(
-                    text: 'LOGIN',
+                    text: 'RESET',
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed('/link');
-                },
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),
-                  child: Text(
-                    'Forgot Password',
-                    style: TextStyle(
-                      fontSize: Get.width / 33,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.hintText),
-                    ),
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),
@@ -155,12 +106,12 @@ class LoginPage extends StatelessWidget {
       padding: EdgeInsets.only(top: Get.height / 50),
       child: Center(
         child: Text(
-          'LOGIN',
+          'FORGOT PASSWORD',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
             fontSize: Get.width / 19,
-            letterSpacing: 2,
+            letterSpacing: 1.6,
           ),
         ),
       ),
