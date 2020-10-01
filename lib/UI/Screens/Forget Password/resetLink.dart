@@ -96,6 +96,7 @@ class LinkPage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: Get.height / 50),
       child: Center(
+
         child: Text(
           'FORGET PASSWORD',
           style: TextStyle(
@@ -103,6 +104,7 @@ class LinkPage extends StatelessWidget {
             color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
             fontSize: Get.width / 28,
             letterSpacing: 1.6,
+
           ),
         ),
       ),
