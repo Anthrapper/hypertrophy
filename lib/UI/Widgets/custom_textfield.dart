@@ -1,9 +1,8 @@
-import 'package:get/get.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
   final bool secureText;
@@ -19,11 +18,6 @@ class CustomTextField extends StatefulWidget {
       this.suffix});
 
   @override
-  _CustomTextFieldState createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -36,30 +30,31 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(left: 8),
         child: TextFormField(
           autofocus: false,
           style: TextStyle(
+            letterSpacing: 1.4,
             color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-            fontSize: 11,
+            fontSize: 13,
           ),
           textAlign: TextAlign.justify,
-          controller: widget.controller,
+          controller: this.controller,
           cursorColor: HexColorUtils.getColorFromHex(CustomColors.hintText),
-          obscureText: widget.secureText,
-          validator: widget.validator,
+          obscureText: this.secureText,
+          validator: this.validator,
           decoration: InputDecoration(
             border: InputBorder.none,
             suffixIcon: Padding(
               padding: const EdgeInsets.only(top: 12),
-              child: widget.suffix,
+              child: this.suffix,
             ),
-            hintText: widget.hintText,
+            hintText: this.hintText,
             hintStyle: TextStyle(
               color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-              fontSize: Get.width / 45,
+              fontSize: 9,
               fontWeight: FontWeight.bold,
-              letterSpacing: 1.1,
+              letterSpacing: 1,
             ),
           ),
         ),

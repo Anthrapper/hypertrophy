@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:hypertrophy/Services/Database/database.dart';
 
 class ButtonController extends GetxController {
+  FirebaseAuth auth = FirebaseAuth.instance;
   var bulkUp = true.obs;
   var lean = true.obs;
   var loseWeight = true.obs;
@@ -36,5 +39,15 @@ class ButtonController extends GetxController {
     loseWeight.value = true;
     strengthTraining.value = false;
     selected.value = false;
+  }
+
+  goalSelection(String goal) async {
+    final User user = auth.currentUser;
+    final uid = user.uid;
+    print(uid);
+    print(goal);
+    await HyperDb()
+        .updateUser(field: 'goal', val: goal, uid: uid)
+        .whenComplete(() => Get.toNamed('/leaderboard'));
   }
 }

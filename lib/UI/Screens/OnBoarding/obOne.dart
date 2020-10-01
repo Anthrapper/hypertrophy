@@ -37,7 +37,7 @@ class OnBoardingOne extends StatelessWidget {
             left: 20,
             top: Get.height / 1.8,
             child: CustomText(
-              width: Get.width / 1.6,
+              width: Get.width / 1.55,
               text: 'Individually',
               color: Colors.white,
             ),

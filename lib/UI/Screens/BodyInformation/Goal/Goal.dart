@@ -10,14 +10,13 @@ class Goal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Background(
-        widget: SafeArea(
-          child: Column(
-            children: [
-              _heading(),
-              _buttons(),
-            ],
-          ),
+      backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
+      body: SafeArea(
+        child: Column(
+          children: [
+            _heading(),
+            _buttons(),
+          ],
         ),
       ),
     );
@@ -89,7 +88,23 @@ class Goal extends StatelessWidget {
               ).buttonFour(),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                if (_buttonController.bulkUp.value == false) {
+                  _buttonController.goalSelection('Bulk Up');
+                } else if (_buttonController.lean.value == false) {
+                  _buttonController.goalSelection('Lean');
+                } else if (_buttonController.loseWeight.value == false) {
+                  _buttonController.goalSelection('Lose Weight');
+                } else if (_buttonController.strengthTraining.value == false) {
+                  _buttonController.goalSelection('Strength Training');
+                } else {
+                  Get.snackbar(
+                    'Error',
+                    'Please choose a goal to continue',
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
+              },
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(13, 25, 13, 25),
                 child: CustomButton(

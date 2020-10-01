@@ -2,19 +2,33 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hypertrophy/Models/userModel.dart';
+import 'package:hypertrophy/Services/Database/database.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
 class SignUpController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
   Rx<User> _fireBaseUser = Rx<User>();
-  void signUp(String email, String password) async {
+  Future<String> signUp(
+      String email, String password, String fname, String lname) async {
+    String retVal = 'Error';
+    HyperUser _user = HyperUser();
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((authResult) async {
+        _user.uid = authResult.user.uid;
+        _user.email = authResult.user.email;
+        _user.fName = fname;
+        _user.lName = lname;
+        _user.rewardPoints = 100;
+        await HyperDb().createUser(_user);
+        retVal = 'success';
+      });
       if (Get.isDialogOpen) {
         Get.back();
       }
-      Get.toNamed('/genderselection');
+      Get.offNamedUntil('/genderselection', (route) => false);
     } catch (e) {
       if (Get.isDialogOpen) {
         Get.back();
@@ -39,6 +53,7 @@ class SignUpController extends GetxController {
         ),
       );
     }
+    return retVal;
   }
 
   TextEditingController emailController;

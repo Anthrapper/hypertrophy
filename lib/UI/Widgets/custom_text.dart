@@ -15,10 +15,11 @@ class CustomText extends StatelessWidget {
         text,
         maxLines: 1,
         presetFontSizes: [
-          38,
-          37,
+          this.width,
           36,
+          35.5,
           35,
+          34.5,
           33,
           32,
           31,

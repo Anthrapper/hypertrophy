@@ -1,14 +1,9 @@
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertrophy/Services/Controllers/controllers.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
-import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
@@ -16,20 +11,17 @@ class LoginPage extends StatelessWidget {
   final LoginController _loginController = Get.put(LoginController());
   final _formKey = GlobalKey<FormState>();
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Background(
-        widget: SafeArea(
-          child: ListView(
-            children: [
-              _heading(),
-              _loginForm(),
-              _bottomText(),
-            ],
-          ),
+      backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
+      body: SafeArea(
+        child: ListView(
+          children: [
+            _heading(),
+            _loginForm(),
+            _bottomText(),
+          ],
         ),
       ),
     );
@@ -39,10 +31,8 @@ class LoginPage extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: Get.height / 15),
       child: GestureDetector(
-          onTap: () {
-          Get.toNamed('/genderselection');
-
-
+        onTap: () {
+          Get.toNamed('/signup');
         },
         child: RichText(
           textAlign: TextAlign.center,
@@ -86,17 +76,14 @@ class LoginPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(top: Get.height / 25),
                 child: Center(
-                  child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    child: Text(
-                      'WELCOME BACK',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: HexColorUtils.getColorFromHex(
-                            CustomColors.whiteText),
-                        fontSize: Get.width / 21,
-                        letterSpacing: 1.6,
-                      ),
+                  child: Text(
+                    'WELCOME BACK',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
+                      fontSize: Get.width / 21,
+                      letterSpacing: 1.6,
                     ),
                   ),
                 ),
@@ -118,10 +105,10 @@ class LoginPage extends StatelessWidget {
                   controller: _loginController.passController,
                   hintText: 'Password',
                   secureText: true,
-               // suffix: FaIcon(
-                  //  Icons.remove_red_eye_outlined,
-               //   color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-               //  ),
+                  suffix: FaIcon(
+                    Icons.remove_red_eye_outlined,
+                    color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+                  ),
                 ),
               ),
               GestureDetector(
@@ -137,14 +124,11 @@ class LoginPage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(13, 25, 13, 5),
                   child: CustomButton(
                     text: 'LOGIN',
-
                   ),
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                 
-                },
+                onTap: () {},
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),
                   child: Text(
