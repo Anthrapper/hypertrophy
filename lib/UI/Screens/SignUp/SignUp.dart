@@ -96,10 +96,10 @@ class SignUp extends StatelessWidget {
                   controller: _signUpController.passController,
                   hintText: 'Password',
                   secureText: true,
-                  suffix: FaIcon(
-                    Icons.remove_red_eye_outlined,
-                    color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-                  ),
+                //  suffix: FaIcon(
+                //    Icons.remove_red_eye_outlined,
+                //    color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+                //  ),
                 ),
               ),
               GestureDetector(
