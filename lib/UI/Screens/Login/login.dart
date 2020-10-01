@@ -118,10 +118,10 @@ class LoginPage extends StatelessWidget {
                   controller: _loginController.passController,
                   hintText: 'Password',
                   secureText: true,
-                suffix: FaIcon(
-                    Icons.remove_red_eye_outlined,
-                   color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-                  ),
+               // suffix: FaIcon(
+                  //  Icons.remove_red_eye_outlined,
+               //   color: HexColorUtils.getColorFromHex(CustomColors.hintText),
+               //  ),
                 ),
               ),
               GestureDetector(
@@ -143,7 +143,7 @@ class LoginPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-
+                 
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),

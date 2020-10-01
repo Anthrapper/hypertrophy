@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../utilities/constants/colors.dart';
 import '../../../utilities/hexColor.dart';
 import '../../Widgets/background.dart';
-import 'package:search_widget/search_widget.dart';
+
 
 class DietPage extends StatefulWidget {
   @override
