@@ -1,11 +1,8 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:polygon_clipper/polygon_clipper.dart';
 
 import '../../../utilities/utils.dart';
 
@@ -21,17 +18,42 @@ class _ProgramPageState extends State<ProgramPage> {
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
       body:
 
+
       SafeArea(
         child: ListView(
 
+          //   StreamBuilder<QuerySnapshot>(
+          //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
+          //     builder: (context,snapshot){
+          //       return ListView.builder(
+          //         itemCount: snapshot.data.documents.length,
+          //           itemBuilder: (context,index){
+          //
+          //           DocumentSnapshot trainer =snapshot.data.docs[index];
+          //           Map getDocs = trainer.data();
+          //
+          //           return Column(
+          //            children: [
+          //              Text(getDocs['Customers'].toString()??'',style: TextStyle(
+          //               color: Colors.white
+          //             )),
+          //             Text(getDocs['Rating'].toString()+'reviews'??'',style: TextStyle(
+          //             color: Colors.white),
+          //             ),
+          // ],
+          //           );
+          //           },
+          //       );
+          //     },
+          //   ),
+          // );
 
+   
           shrinkWrap: true,
-          children:<Widget> [
+          children: <Widget>[
             _heading(),
             _search(),
-
             _cards(),
-
           ],
         ),
       ),
@@ -96,8 +118,7 @@ class _ProgramPageState extends State<ProgramPage> {
 
   Widget _cards() {
     final pHeight = MediaQuery.of(context).size.height;
-    final pWidth = MediaQuery.of(context).size.width;
-
+    final pWidth = MediaQuery.of(context).size.width
     return Container(
       child: StreamBuilder<QuerySnapshot>(
 
@@ -165,6 +186,9 @@ class _ProgramPageState extends State<ProgramPage> {
                                           color: HexColorUtils.getColorFromHex(
                                               CustomColors.whiteText),
 
+
+                                          ),
+
                                         ),
                                       ),
                                       SizedBox(width: 20),
@@ -179,6 +203,7 @@ class _ProgramPageState extends State<ProgramPage> {
                                           fontSize: Get.width / 28,
                                           letterSpacing: 1.2,
                                           color: HexColorUtils.getColorFromHex(
+
                                               CustomColors.whiteText),
                                         ),
                                       ),
@@ -204,10 +229,12 @@ class _ProgramPageState extends State<ProgramPage> {
                                           letterSpacing: 1.2,
                                           color: HexColorUtils.getColorFromHex(
                                               CustomColors.whiteText),
+
                                         ),
                                       ),
                                     ],
                                   ),
+
                                 ),
 
 
@@ -267,6 +294,7 @@ class _ProgramPageState extends State<ProgramPage> {
                         ),
 
                       ],
+
                     ),
                   ),
                 );

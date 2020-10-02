@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertrophy/Services/Controllers/controllers.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
@@ -20,14 +18,11 @@ class ResetPage extends StatelessWidget {
           children: [
             _heading(),
             _resetForm(),
-
           ],
         ),
       ),
     );
   }
-
-
 
   Widget _resetForm() {
     return Form(
@@ -35,7 +30,6 @@ class ResetPage extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.fromLTRB(20, Get.height / 6, 20, 0),
         child: CustomCard(
-
           widget: Column(
             children: [
               Padding(
@@ -43,11 +37,10 @@ class ResetPage extends StatelessWidget {
                 child: Center(
                   child: Text(
                     'RESET PASSWORD',
-
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color:
-                      HexColorUtils.getColorFromHex(CustomColors.whiteText),
+                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
                       fontSize: Get.width / 21,
                       letterSpacing: 1.6,
                     ),
@@ -70,7 +63,7 @@ class ResetPage extends StatelessWidget {
                 child: CustomTextField(
                   controller: _loginController.passController,
                   hintText: 'Confirm Password',
-secureText: true,
+                  secureText: true,
                   // suffix: FaIcon(
                   //   Icons.remove_red_eye_outlined,
                   //   color: HexColorUtils.getColorFromHex(CustomColors.hintText),
@@ -87,13 +80,12 @@ secureText: true,
                   }
                 },
                 child: Padding(
-                  padding:  EdgeInsets.fromLTRB(13, 25, 13, Get.height/22),
+                  padding: EdgeInsets.fromLTRB(13, 25, 13, Get.height / 22),
                   child: CustomButton(
                     text: 'RESET',
                   ),
                 ),
               ),
-
             ],
           ),
         ),

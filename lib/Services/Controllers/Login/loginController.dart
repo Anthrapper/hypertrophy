@@ -25,12 +25,12 @@ class LoginController extends GetxController {
         (authResult) {
           print(authResult.user);
           // Get.offNamedUntil('/leaderboard', (route) => false);
-          Get.toNamed('/leaderboard');
+          if (Get.isDialogOpen) {
+            Get.back();
+          }
+          Get.toNamed('/home');
         },
       );
-      if (Get.isDialogOpen) {
-        Get.back();
-      }
     } catch (e) {
       if (Get.isDialogOpen) {
         Get.back();

@@ -33,7 +33,7 @@ dependencies:
   cloud_firestore: ^0.14.0+2
   firebase_core :
   polygon_clipper: ^1.0.2
-
+  persistent_bottom_nav_bar: ^2.0.5
 
 dev_dependencies:
   flutter_test:
@@ -44,3 +44,7 @@ flutter:
   assets:
     - assets/images/
   uses-material-design: true
+  fonts:
+  - family: CustomIcons
+    fonts:
+      - asset: assets/fonts/CustomIcons.ttf

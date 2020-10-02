@@ -12,6 +12,7 @@ import 'package:hypertrophy/UI/Screens/Perfomance/details.dart';
 import 'package:hypertrophy/UI/Screens/Perfomance/leaderboard.dart';
 import 'package:hypertrophy/UI/Screens/Perfomance/programs.dart';
 import 'package:hypertrophy/UI/Screens/Perfomance/trainers.dart';
+
 import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/UI/Screens/SignUp/SignUp.dart';
 
@@ -45,12 +46,11 @@ class Routes {
     GetPage(
       name: '/load',
       page: () => TrainerPage(),
-
     ),
-  GetPage(
-  name: '/leader',
-  page: () => LeaderBoard(),
-  ),
+    GetPage(
+      name: '/leader',
+      page: () => LeaderBoard(),
+    ),
     GetPage(
       name: '/reset',
       page: () => ResetPage(),
@@ -58,12 +58,14 @@ class Routes {
     GetPage(
       name: '/link',
       page: () => LinkPage(),
-
     ),
     GetPage(
       name: '/program',
       page: () => ProgramPage(),
-
+    ),
+    GetPage(
+      name: '/home',
+      page: () => NavBar(),
     ),
     GetPage(
       name: '/detail',

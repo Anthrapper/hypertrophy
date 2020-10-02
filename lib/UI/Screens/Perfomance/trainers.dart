@@ -1,5 +1,3 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +96,10 @@ class _TrainerPageState extends State<TrainerPage> {
 
     return Container(
       child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('trainer').orderBy('Rating',descending: true).snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('trainer')
+              .orderBy('Rating', descending: true)
+              .snapshots(),
           builder: (context, snapshot) {
     if (snapshot.hasError) {
                     return Text('Something went wrong');
@@ -273,10 +274,13 @@ class _TrainerPageState extends State<TrainerPage> {
                         child: ClipPolygon(
                           sides: 6,
                           borderRadius: 5,
-                          child: Image.network(getDocs['img'],height: 120,width: 120,),
+                          child: Image.network(
+                            getDocs['img'],
+                            height: 120,
+                            width: 120,
                           ),
                         ),
-
+                      ),
                     ],
                   ),
                 );
