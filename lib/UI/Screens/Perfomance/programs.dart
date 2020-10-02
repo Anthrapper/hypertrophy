@@ -1,11 +1,8 @@
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:polygon_clipper/polygon_clipper.dart';
 
 import '../../../utilities/utils.dart';
 
@@ -21,43 +18,40 @@ class _ProgramPageState extends State<ProgramPage> {
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
       body:
 
-      //   StreamBuilder<QuerySnapshot>(
-      //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
-      //     builder: (context,snapshot){
-      //       return ListView.builder(
-      //         itemCount: snapshot.data.documents.length,
-      //           itemBuilder: (context,index){
-      //
-      //           DocumentSnapshot trainer =snapshot.data.docs[index];
-      //           Map getDocs = trainer.data();
-      //
-      //           return Column(
-      //            children: [
-      //              Text(getDocs['Customers'].toString()??'',style: TextStyle(
-      //               color: Colors.white
-      //             )),
-      //             Text(getDocs['Rating'].toString()+'reviews'??'',style: TextStyle(
-      //             color: Colors.white),
-      //             ),
-      // ],
-      //           );
-      //           },
-      //       );
-      //     },
-      //   ),
-      // );
+          //   StreamBuilder<QuerySnapshot>(
+          //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
+          //     builder: (context,snapshot){
+          //       return ListView.builder(
+          //         itemCount: snapshot.data.documents.length,
+          //           itemBuilder: (context,index){
+          //
+          //           DocumentSnapshot trainer =snapshot.data.docs[index];
+          //           Map getDocs = trainer.data();
+          //
+          //           return Column(
+          //            children: [
+          //              Text(getDocs['Customers'].toString()??'',style: TextStyle(
+          //               color: Colors.white
+          //             )),
+          //             Text(getDocs['Rating'].toString()+'reviews'??'',style: TextStyle(
+          //             color: Colors.white),
+          //             ),
+          // ],
+          //           );
+          //           },
+          //       );
+          //     },
+          //   ),
+          // );
 
-      SafeArea(
+          SafeArea(
         child: ListView(
-           physics: ClampingScrollPhysics(),
-
+          physics: ClampingScrollPhysics(),
           shrinkWrap: true,
-          children:<Widget> [
+          children: <Widget>[
             _heading(),
             _search(),
-
             _cards(),
-
           ],
         ),
       ),
@@ -127,7 +121,10 @@ class _ProgramPageState extends State<ProgramPage> {
     return SingleChildScrollView(
       child: Container(
         child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('programs').orderBy('Rating',descending: true).snapshots(),
+            stream: FirebaseFirestore.instance
+                .collection('programs')
+                .orderBy('Rating', descending: true)
+                .snapshots(),
             builder: (context, snapshot) {
               return ListView.builder(
                 scrollDirection: Axis.vertical,
@@ -161,7 +158,7 @@ class _ProgramPageState extends State<ProgramPage> {
                             ),
                             child: Padding(
                               padding:
-                              EdgeInsets.fromLTRB(0, Get.height / 60, 0, 0),
+                                  EdgeInsets.fromLTRB(0, Get.height / 60, 0, 0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -179,9 +176,9 @@ class _ProgramPageState extends State<ProgramPage> {
                                           style: GoogleFonts.lato(
                                             fontSize: Get.width / 28,
                                             letterSpacing: 1.2,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
-
+                                            color:
+                                                HexColorUtils.getColorFromHex(
+                                                    CustomColors.whiteText),
                                           ),
                                         ),
                                         SizedBox(width: 20),
@@ -191,98 +188,101 @@ class _ProgramPageState extends State<ProgramPage> {
                                               CustomColors.primary),
                                         ),
                                         Text(
-                                          getDocs['Rating'].toString()  ?? '',
+                                          getDocs['Rating'].toString() ?? '',
                                           style: GoogleFonts.lato(
                                             fontSize: Get.width / 28,
                                             letterSpacing: 1.2,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
+                                            color:
+                                                HexColorUtils.getColorFromHex(
+                                                    CustomColors.whiteText),
                                           ),
                                         ),
                                       ],
                                     ),
-
                                   ),
                                   SizedBox(height: pHeight / 90),
                                   Padding(
                                     padding: EdgeInsets.only(left: pWidth / 3),
                                     child: Row(
                                       children: [
-
                                         Icon(
                                           Icons.access_time,
                                           color: HexColorUtils.getColorFromHex(
                                               CustomColors.primary),
                                         ),
                                         Text(
-                                          getDocs['Time'].toString()  ?? '',
+                                          getDocs['Time'].toString() ?? '',
                                           style: GoogleFonts.lato(
                                             fontSize: Get.width / 28,
                                             letterSpacing: 1.2,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
+                                            color:
+                                                HexColorUtils.getColorFromHex(
+                                                    CustomColors.whiteText),
                                           ),
                                         ),
                                       ],
                                     ),
                                   ),
-
-
                                   SizedBox(height: pHeight / 90),
                                   Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(left: pWidth / 20),
+                                        padding:
+                                            EdgeInsets.only(left: pWidth / 20),
                                         child: Text(
                                           'Double your Stamina in',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
+                                            color:
+                                                HexColorUtils.getColorFromHex(
+                                                    CustomColors.whiteText),
                                             fontSize: Get.width / 25,
                                           ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(left: pWidth / 20),
+                                        padding:
+                                            EdgeInsets.only(left: pWidth / 20),
                                         child: Text(
                                           'Just 6 Weeks with ',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
+                                            color:
+                                                HexColorUtils.getColorFromHex(
+                                                    CustomColors.whiteText),
                                             fontSize: Get.width / 25,
                                           ),
                                         ),
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.only(left: pWidth / 20),
+                                        padding:
+                                            EdgeInsets.only(left: pWidth / 20),
                                         child: Text(
                                           'Absolute Ease',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
+                                            color:
+                                                HexColorUtils.getColorFromHex(
+                                                    CustomColors.whiteText),
                                             fontSize: Get.width / 25,
                                           ),
                                         ),
                                       ),
                                     ],
                                   ),
-
                                 ],
                               ),
                             ),
                           ),
                           Container(
                             height: pHeight * .16,
-
-                            padding: EdgeInsets.fromLTRB(20, 0, 0, pHeight / 50),
+                            padding:
+                                EdgeInsets.fromLTRB(20, 0, 0, pHeight / 50),
                             alignment: FractionalOffset.topLeft,
                             child: Image.network(getDocs['img']),
                           ),
-
                         ],
                       ),
                     ),
