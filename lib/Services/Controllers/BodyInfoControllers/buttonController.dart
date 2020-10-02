@@ -48,6 +48,6 @@ class ButtonController extends GetxController {
     print(goal);
     await HyperDb()
         .updateUser(field: 'goal', val: goal, uid: uid)
-        .whenComplete(() => Get.toNamed('/leaderboard'));
+        .whenComplete(() => Get.offNamedUntil('/home', (route) => false));
   }
 }

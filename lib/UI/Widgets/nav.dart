@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hypertrophy/UI/Screens/Diet/diet.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/ContentDetails/tab.dart';
 import 'package:hypertrophy/UI/Screens/Perfomance/LeaderBoard/leaderboard.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/ProgramsTrainers/tabbar.dart';
 import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/utilities/constants/colors.dart';
 import 'package:hypertrophy/utilities/Icons/custom_icons.dart';
 import 'package:hypertrophy/utilities/hexColor.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-class NavBar extends StatelessWidget {
+class Nav extends StatelessWidget {
   final PersistentTabController controller =
-      PersistentTabController(initialIndex: 0);
+      PersistentTabController(initialIndex: 1);
   List<Widget> buildScreens() {
-    return [LeaderBoard(), TabBars(), DietPage(), ProfilePage()];
+    return [LeaderBoard(), TabSelect(), DietPage(), ProfilePage()];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {

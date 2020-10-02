@@ -24,11 +24,11 @@ class LoginController extends GetxController {
           .then(
         (authResult) {
           print(authResult.user);
-          // Get.offNamedUntil('/leaderboard', (route) => false);
+
           if (Get.isDialogOpen) {
             Get.back();
           }
-          Get.toNamed('/home');
+          Get.offNamedUntil('/home', (route) => false);
         },
       );
     } catch (e) {

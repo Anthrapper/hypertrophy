@@ -50,7 +50,7 @@ class LinkPage extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.fromLTRB(13, Get.height / 25, 13, 10),
                 child: CustomTextField(
-                  hintText: 'New Password',
+                  hintText: 'Email',
                   validator: (val) {
                     Validators().emailValidator(val);
                   },
@@ -64,9 +64,7 @@ class LinkPage extends StatelessWidget {
                     Loading().showLoading();
                     //    FirebaseAuth mAuth = FirebaseAuth.instance;
                     //     await mAuth.sendPasswordResetEmail(email: _email);
-                    _loginController.login(
-                        _loginController.emailController.text,
-                        _loginController.passController.text);
+
                   }
                 },
                 child: Padding(

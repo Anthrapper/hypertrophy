@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/quote.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/LeaderBoard/quote.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
