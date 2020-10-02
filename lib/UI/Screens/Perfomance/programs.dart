@@ -21,35 +21,9 @@ class _ProgramPageState extends State<ProgramPage> {
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
       body:
 
-      //   StreamBuilder<QuerySnapshot>(
-      //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
-      //     builder: (context,snapshot){
-      //       return ListView.builder(
-      //         itemCount: snapshot.data.documents.length,
-      //           itemBuilder: (context,index){
-      //
-      //           DocumentSnapshot trainer =snapshot.data.docs[index];
-      //           Map getDocs = trainer.data();
-      //
-      //           return Column(
-      //            children: [
-      //              Text(getDocs['Customers'].toString()??'',style: TextStyle(
-      //               color: Colors.white
-      //             )),
-      //             Text(getDocs['Rating'].toString()+'reviews'??'',style: TextStyle(
-      //             color: Colors.white),
-      //             ),
-      // ],
-      //           );
-      //           },
-      //       );
-      //     },
-      //   ),
-      // );
-
       SafeArea(
         child: ListView(
-           physics: ClampingScrollPhysics(),
+
 
           shrinkWrap: true,
           children:<Widget> [
@@ -124,173 +98,181 @@ class _ProgramPageState extends State<ProgramPage> {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
 
-    return SingleChildScrollView(
-      child: Container(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance.collection('programs').orderBy('Rating',descending: true).snapshots(),
-            builder: (context, snapshot) {
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: snapshot.data.docs.length,
-                itemBuilder: (context, index) {
-                  DocumentSnapshot program = snapshot.data.docs[index];
-                  Map getDocs = program.data();
+    return Container(
+      child: StreamBuilder<QuerySnapshot>(
 
-                  return SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(
-                          0, Get.height / 28, Get.width / 20, 0),
-                      child: Stack(
-                        children: <Widget>[
-                          Container(
-                            height: pHeight * 0.22,
-                            width: pWidth,
-                            margin: EdgeInsets.fromLTRB(40, pHeight / 50, 0, 0),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.rectangle,
-                              color: HexColorUtils.getColorFromHex(
-                                  CustomColors.background),
-                              borderRadius: BorderRadius.circular(8.0),
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 10.0,
-                                ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding:
-                              EdgeInsets.fromLTRB(0, Get.height / 60, 0, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: EdgeInsets.only(left: pWidth / 3),
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.group,
-                                          color: HexColorUtils.getColorFromHex(
-                                              CustomColors.primary),
-                                        ),
-                                        Text(
-                                          getDocs['Customers'].toString() ?? '',
-                                          style: GoogleFonts.lato(
-                                            fontSize: Get.width / 28,
-                                            letterSpacing: 1.2,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
+          stream: FirebaseFirestore.instance.collection('programs').orderBy('Rating',descending: true).snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
 
-                                          ),
-                                        ),
-                                        SizedBox(width: 20),
-                                        Icon(
-                                          Icons.star_border,
-                                          color: HexColorUtils.getColorFromHex(
-                                              CustomColors.primary),
-                                        ),
-                                        Text(
-                                          getDocs['Rating'].toString()  ?? '',
-                                          style: GoogleFonts.lato(
-                                            fontSize: Get.width / 28,
-                                            letterSpacing: 1.2,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+            if (snapshot.connectionState ==
+                ConnectionState.waiting) {
+              return Text("Loading");
+            }
+            return ListView.builder(
+              physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                DocumentSnapshot program = snapshot.data.docs[index];
+                Map getDocs = program.data();
 
-                                  ),
-                                  SizedBox(height: pHeight / 90),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: pWidth / 3),
-                                    child: Row(
-                                      children: [
-
-                                        Icon(
-                                          Icons.access_time,
-                                          color: HexColorUtils.getColorFromHex(
-                                              CustomColors.primary),
-                                        ),
-                                        Text(
-                                          getDocs['Time'].toString()  ?? '',
-                                          style: GoogleFonts.lato(
-                                            fontSize: Get.width / 28,
-                                            letterSpacing: 1.2,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-
-
-                                  SizedBox(height: pHeight / 90),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                return SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.fromLTRB(
+                        0, Get.height / 28, Get.width / 20, 0),
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          height: pHeight * 0.22,
+                          width: pWidth,
+                          margin: EdgeInsets.fromLTRB(40, pHeight / 50, 0, 0),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            color: HexColorUtils.getColorFromHex(
+                                CustomColors.background),
+                            borderRadius: BorderRadius.circular(8.0),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10.0,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding:
+                            EdgeInsets.fromLTRB(0, Get.height / 60, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(left: pWidth / 3),
+                                  child: Row(
                                     children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(left: pWidth / 20),
-                                        child: Text(
-                                          'Double your Stamina in',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
-                                            fontSize: Get.width / 25,
-                                          ),
+                                      Icon(
+                                        Icons.group,
+                                        color: HexColorUtils.getColorFromHex(
+                                            CustomColors.primary),
+                                      ),
+                                      Text(
+                                        getDocs['Customers'].toString() ?? '',
+                                        style: GoogleFonts.lato(
+                                          fontSize: Get.width / 28,
+                                          letterSpacing: 1.2,
+                                          color: HexColorUtils.getColorFromHex(
+                                              CustomColors.whiteText),
+
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: pWidth / 20),
-                                        child: Text(
-                                          'Just 6 Weeks with ',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
-                                            fontSize: Get.width / 25,
-                                          ),
-                                        ),
+                                      SizedBox(width: 20),
+                                      Icon(
+                                        Icons.star_border,
+                                        color: HexColorUtils.getColorFromHex(
+                                            CustomColors.primary),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: pWidth / 20),
-                                        child: Text(
-                                          'Absolute Ease',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: HexColorUtils.getColorFromHex(
-                                                CustomColors.whiteText),
-                                            fontSize: Get.width / 25,
-                                          ),
+                                      Text(
+                                        getDocs['Rating'].toString()  ?? '',
+                                        style: GoogleFonts.lato(
+                                          fontSize: Get.width / 28,
+                                          letterSpacing: 1.2,
+                                          color: HexColorUtils.getColorFromHex(
+                                              CustomColors.whiteText),
                                         ),
                                       ),
                                     ],
                                   ),
 
-                                ],
-                              ),
+                                ),
+                                SizedBox(height: pHeight / 90),
+                                Padding(
+                                  padding: EdgeInsets.only(left: pWidth / 3),
+                                  child: Row(
+                                    children: [
+
+                                      Icon(
+                                        Icons.access_time,
+                                        color: HexColorUtils.getColorFromHex(
+                                            CustomColors.primary),
+                                      ),
+                                      Text(
+                                        getDocs['Time'].toString()  ?? '',
+                                        style: GoogleFonts.lato(
+                                          fontSize: Get.width / 28,
+                                          letterSpacing: 1.2,
+                                          color: HexColorUtils.getColorFromHex(
+                                              CustomColors.whiteText),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+
+
+                                SizedBox(height: pHeight / 90),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(left: pWidth / 20),
+                                      child: Text(
+                                        'Double your Stamina in',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColorUtils.getColorFromHex(
+                                              CustomColors.whiteText),
+                                          fontSize: Get.width / 25,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: pWidth / 20),
+                                      child: Text(
+                                        'Just 6 Weeks with ',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColorUtils.getColorFromHex(
+                                              CustomColors.whiteText),
+                                          fontSize: Get.width / 25,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: pWidth / 20),
+                                      child: Text(
+                                        'Absolute Ease',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: HexColorUtils.getColorFromHex(
+                                              CustomColors.whiteText),
+                                          fontSize: Get.width / 25,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                              ],
                             ),
                           ),
-                          Container(
-                            height: pHeight * .16,
+                        ),
+                        Container(
+                          height: pHeight * .16,
 
-                            padding: EdgeInsets.fromLTRB(20, 0, 0, pHeight / 50),
-                            alignment: FractionalOffset.topLeft,
-                            child: Image.network(getDocs['img']),
-                          ),
+                          padding: EdgeInsets.fromLTRB(20, 0, 0, pHeight / 50),
+                          alignment: FractionalOffset.topLeft,
+                          child: Image.network(getDocs['img']),
+                        ),
 
-                        ],
-                      ),
+                      ],
                     ),
-                  );
-                },
-              );
-            }),
-      ),
+                  ),
+                );
+              },
+            );
+          }),
     );
   }
 }
