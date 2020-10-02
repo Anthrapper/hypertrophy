@@ -19,31 +19,6 @@ class _TrainerPageState extends State<TrainerPage> {
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
       body:
 
-          //   StreamBuilder<QuerySnapshot>(
-          //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
-          //     builder: (context,snapshot){
-          //       return ListView.builder(
-          //         itemCount: snapshot.data.documents.length,
-          //           itemBuilder: (context,index){
-          //
-          //           DocumentSnapshot trainer =snapshot.data.docs[index];
-          //           Map getDocs = trainer.data();
-          //
-          //           return Column(
-          //            children: [
-          //              Text(getDocs['Customers'].toString()??'',style: TextStyle(
-          //               color: Colors.white
-          //             )),
-          //             Text(getDocs['Rating'].toString()+'reviews'??'',style: TextStyle(
-          //             color: Colors.white),
-          //             ),
-          // ],
-          //           );
-          //           },
-          //       );
-          //     },
-          //   ),
-          // );
 
           SafeArea(
         child: ListView(
@@ -126,7 +101,17 @@ class _TrainerPageState extends State<TrainerPage> {
               .orderBy('Rating', descending: true)
               .snapshots(),
           builder: (context, snapshot) {
+    if (snapshot.hasError) {
+                    return Text('Something went wrong');
+                  }
+
+                  if (snapshot.connectionState ==
+                      ConnectionState.waiting) {
+                    return Text("Loading");
+                  }
+
             return ListView.builder(
+              physics: ClampingScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: snapshot.data.docs.length,
