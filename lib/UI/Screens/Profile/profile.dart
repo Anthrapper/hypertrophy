@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hypertrophy/UI/Screens/Login/Forget%20Password/resetLink.dart';
 
 import '../../../utilities/constants/colors.dart';
 import '../../../utilities/hexColor.dart';
@@ -146,7 +147,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     letterSpacing: 1.6),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.to(
+                LinkPage(),
+              );
+            },
           ),
           InkWell(
             child: Padding(

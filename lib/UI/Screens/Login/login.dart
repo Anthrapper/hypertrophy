@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hypertrophy/Services/Controllers/controllers.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
+import 'package:hypertrophy/UI/Screens/Login/Forget%20Password/resetLink.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
@@ -128,7 +129,7 @@ class LoginPage extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed('/link');
+                  Get.to(LinkPage(), arguments: '/login');
                 },
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(20, Get.height / 30, 20, 20),
