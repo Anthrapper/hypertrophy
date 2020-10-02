@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertrophy/Services/Controllers/controllers.dart';
+import 'package:hypertrophy/Services/Controllers/Login/linkController.dart';
 import 'package:hypertrophy/Services/Validators/validator.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
 class LinkPage extends StatelessWidget {
-  final LoginController _loginController = Get.put(LoginController());
+  final LinkController _linkController = Get.put(LinkController());
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -54,17 +54,16 @@ class LinkPage extends StatelessWidget {
                   validator: (val) {
                     Validators().emailValidator(val);
                   },
-                  controller: _loginController.emailController,
-                  secureText: true,
+                  controller: _linkController.emailController,
+                  secureText: false,
                 ),
               ),
               GestureDetector(
                 onTap: () async {
                   if (_formKey.currentState.validate()) {
                     Loading().showLoading();
-                    //    FirebaseAuth mAuth = FirebaseAuth.instance;
-                    //     await mAuth.sendPasswordResetEmail(email: _email);
-
+                    _linkController
+                        .sendResetLink(_linkController.emailController.text);
                   }
                 },
                 child: Padding(
