@@ -1,135 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
-import '../../../../utilities/utils.dart';
-
-class ProgramPage extends StatefulWidget {
+class ProgramCards extends StatefulWidget {
   @override
-  _ProgramPageState createState() => _ProgramPageState();
+  _ProgramCardsState createState() => _ProgramCardsState();
 }
 
-class _ProgramPageState extends State<ProgramPage> {
+class _ProgramCardsState extends State<ProgramCards> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
-      body: SafeArea(
-        child: ListView(
-          //   StreamBuilder<QuerySnapshot>(
-          //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
-          //     builder: (context,snapshot){
-          //       return ListView.builder(
-          //         itemCount: snapshot.data.documents.length,
-          //           itemBuilder: (context,index){
-          //
-          //           DocumentSnapshot trainer =snapshot.data.docs[index];
-          //           Map getDocs = trainer.data();
-          //
-          //           return Column(
-          //            children: [
-          //              Text(getDocs['Customers'].toString()??'',style: TextStyle(
-          //               color: Colors.white
-          //             )),
-          //             Text(getDocs['Rating'].toString()+'reviews'??'',style: TextStyle(
-          //             color: Colors.white),
-          //             ),
-          // ],
-          //           );
-          //           },
-          //       );
-          //     },
-          //   ),
-          // );
-
-          shrinkWrap: true,
-          children: <Widget>[
-            _heading(),
-            _search(),
-            _cards(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _heading() {
-    return Padding(
-      padding: EdgeInsets.only(top: Get.height / 50),
-      child: Center(
-        child: Text(
-          'PERFORMANCE',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: HexColorUtils.getColorFromHex(CustomColors.whiteText),
-            fontSize: Get.width / 19,
-            letterSpacing: 2,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _search() {
-    final pHeight = MediaQuery.of(context).size.height;
-    // final pWidth = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-          Get.width / 20, Get.height / 28, Get.width / 20, 0),
-      child: Container(
-        child: TextField(
-          style: TextStyle(
-              fontSize: 16,
-              color: HexColorUtils.getColorFromHex(CustomColors.whiteText)),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: HexColorUtils.getColorFromHex(CustomColors.buttonColor),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(pHeight * .02),
-              borderSide: BorderSide(
-                color: Colors.transparent,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.circular(pHeight * .02),
-            ),
-            suffixIcon: Icon(Icons.clear, color: Colors.white70),
-            border: InputBorder.none,
-            hintText: "Search",
-            contentPadding: EdgeInsets.only(
-              left: Get.width / 16,
-              right: Get.width / 20,
-              top: Get.height / 50,
-              bottom: Get.height / 50,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _cards() {
     final pHeight = MediaQuery.of(context).size.height;
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
       child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('programs')
-              .orderBy('Rating', descending: true)
-              .snapshots(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text('Something went wrong');
-            }
-
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Text("Loading");
-            }
+        stream: FirebaseFirestore.instance
+            .collection('programs')
+            .orderBy('Rating', descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             return ListView.builder(
-              physics: ClampingScrollPhysics(),
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               itemCount: snapshot.data.docs.length,
@@ -284,7 +177,12 @@ class _ProgramPageState extends State<ProgramPage> {
                 );
               },
             );
-          }),
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
     );
   }
 }

@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertrophy/Services/Controllers/tabController.dart';
+import 'package:hypertrophy/Services/Controllers/screenSelection.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/Goal/GoalButtons.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/ContentDetails/detailsCards.dart';
+import 'package:hypertrophy/UI/Screens/Home/Perfomance/ProgramsTrainers/programCards.dart';
+import 'package:hypertrophy/UI/Screens/Home/Perfomance/ProgramsTrainers/trainingCards.dart';
 
 import 'package:hypertrophy/utilities/constants/styles.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
-import 'contentCards.dart';
+class TabBars extends StatefulWidget {
+  @override
+  _TabBarsState createState() => _TabBarsState();
+}
 
-class TabSelect extends StatelessWidget {
-  final TabControl _tabController = Get.put(TabControl());
+class _TabBarsState extends State<TabBars> {
+  final ScreenController _screenController = Get.put(ScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +28,33 @@ class TabSelect extends StatelessWidget {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: Get.height / 50),
-                child: Center(
-                  child: Text(
-                    'PROGRAMS',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.hintText),
-                      fontSize: Get.width / 19,
-                      letterSpacing: 2,
-                    ),
+                child: Obx(
+                  () => Center(
+                    child: _screenController.programs.value
+                        ? Text(
+                            'TRAINING',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: HexColorUtils.getColorFromHex(
+                                  CustomColors.hintText),
+                              fontSize: Get.width / 19,
+                              letterSpacing: 2,
+                            ),
+                          )
+                        : Text(
+                            'PROGRAMS',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: HexColorUtils.getColorFromHex(
+                                  CustomColors.hintText),
+                              fontSize: Get.width / 19,
+                              letterSpacing: 2,
+                            ),
+                          ),
                   ),
                 ),
               ),
-              _top(),
+              search(),
               Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: Get.width / 12,
@@ -45,10 +62,10 @@ class TabSelect extends StatelessWidget {
                 child: Obx(
                   () => Row(
                     children: [
-                      _tabController.details.value
+                      _screenController.programs.value
                           ? GestureDetector(
                               onTap: () {
-                                _tabController.detailsClicked();
+                                _screenController.programsClicked();
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
@@ -58,7 +75,7 @@ class TabSelect extends StatelessWidget {
                                   height: Get.height / 20,
                                   decoration: Styles().normalTab,
                                   child: GoalButtons(
-                                    text: 'Details',
+                                    text: 'Programs',
                                     color: Colors.white,
                                   ),
                                 ),
@@ -66,7 +83,7 @@ class TabSelect extends StatelessWidget {
                             )
                           : GestureDetector(
                               onTap: () {
-                                _tabController.detailsClicked();
+                                _screenController.programsClicked();
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
@@ -79,15 +96,15 @@ class TabSelect extends StatelessWidget {
                                   child: GoalButtons(
                                     color: HexColorUtils.getColorFromHex(
                                         CustomColors.background),
-                                    text: 'Details',
+                                    text: 'Programs',
                                   ),
                                 ),
                               ),
                             ),
-                      _tabController.content.value
+                      _screenController.trainers.value
                           ? GestureDetector(
                               onTap: () {
-                                _tabController.contentClicked();
+                                _screenController.trainersClicked();
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
@@ -97,7 +114,7 @@ class TabSelect extends StatelessWidget {
                                   height: Get.height / 20,
                                   decoration: Styles().normalTab,
                                   child: GoalButtons(
-                                    text: 'Content',
+                                    text: 'Trainers',
                                     color: Colors.white,
                                   ),
                                 ),
@@ -116,7 +133,7 @@ class TabSelect extends StatelessWidget {
                                   child: GoalButtons(
                                     color: HexColorUtils.getColorFromHex(
                                         CustomColors.background),
-                                    text: 'Content',
+                                    text: 'Trainers',
                                   ),
                                 ),
                               ),
@@ -126,9 +143,9 @@ class TabSelect extends StatelessWidget {
                 ),
               ),
               Obx(
-                () => _tabController.details.value
-                    ? ContentCards()
-                    : DetailsCard(),
+                () => _screenController.programs.value
+                    ? TrainingCards()
+                    : ProgramCards(),
               ),
             ],
           ),
@@ -170,80 +187,6 @@ class TabSelect extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _top() {
-    final pHeight = Get.height;
-    final pWidth = Get.width;
-    return Padding(
-      padding: EdgeInsets.all(Get.width / 20),
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: Get.height / 50),
-            child: Image(
-              image: AssetImage('assets/images/Rectangle 21.png'),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.fromLTRB(110, Get.height / 50, 0, 0),
-            child: Image(
-              image: AssetImage('assets/images/Rectangle 22.png'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 6),
-            child: Image(
-              image: AssetImage('assets/images/Rectanglebig.png'),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(25, pHeight * .25, 0, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: pWidth / 20),
-                  child: Text(
-                    'Double your Stamina in',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                      fontSize: Get.width / 25,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: pWidth / 20),
-                  child: Text(
-                    'Just 6 Weeks with ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                      fontSize: Get.width / 25,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: pWidth / 20),
-                  child: Text(
-                    'Absolute Ease',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                      fontSize: Get.width / 25,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }

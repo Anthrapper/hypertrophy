@@ -1,17 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:hypertrophy/utilities/utils.dart';
 
 class LoginController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  Rx<User> _fireBaseUser = Rx<User>();
 
   TextEditingController emailController;
   TextEditingController passController;
   @override
   void onInit() {
-    _fireBaseUser.bindStream(_auth.authStateChanges());
+    // _fireBaseUser.bindStream(_auth.authStateChanges());
     emailController = TextEditingController();
     passController = TextEditingController();
     super.onInit();
@@ -21,10 +21,9 @@ class LoginController extends GetxController {
     try {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
-          .then(
-        (authResult) {
-          print(authResult.user);
-
+          .whenComplete(
+        () async {
+          print("uid is ${_auth.currentUser.uid}");
           if (Get.isDialogOpen) {
             Get.back();
           }

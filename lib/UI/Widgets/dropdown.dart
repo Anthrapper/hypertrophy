@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:hypertrophy/utilities/utils.dart';
 
 class CustomDropDown extends StatelessWidget {
@@ -7,8 +8,13 @@ class CustomDropDown extends StatelessWidget {
   final List data;
   final Function onChanged;
   final String hint;
-  CustomDropDown(
-      {this.onChanged, this.drValue, this.data, this.dText, this.hint});
+  CustomDropDown({
+    this.onChanged,
+    this.drValue,
+    this.data,
+    this.dText,
+    this.hint,
+  });
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,24 +34,23 @@ class CustomDropDown extends StatelessWidget {
           ),
           isExpanded: false,
           autofocus: false,
-          // icon: Icon(Icons.arrow_drop_down_sharp),
           iconEnabledColor:
               HexColorUtils.getColorFromHex(CustomColors.hintText),
           iconDisabledColor: Colors.grey[200],
           iconSize: 20,
-          dropdownColor: HexColorUtils.getColorFromHex(CustomColors.hintText),
+          dropdownColor: HexColorUtils.getColorFromHex(CustomColors.cardColor),
           value: drValue,
           items: data.map((item) {
             return DropdownMenuItem(
               child: Text(
                 item[dText],
                 style: TextStyle(
-                  color: HexColorUtils.getColorFromHex(CustomColors.cardColor),
+                  color: HexColorUtils.getColorFromHex(CustomColors.hintText),
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              value: item['id'].toString(),
+              value: item[dText].toString(),
             );
           }).toList(),
           onChanged: (String val) {

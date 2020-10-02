@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/LeaderBoard/quote.dart';
+import 'package:hypertrophy/UI/Screens/Home/Perfomance/LeaderBoard/quote.dart';
 import 'package:hypertrophy/UI/Widgets/widgets.dart';
 import 'package:hypertrophy/utilities/utils.dart';
 
@@ -11,25 +11,6 @@ class LeaderBoard extends StatefulWidget {
 }
 
 class _LeaderBoardState extends State<LeaderBoard> {
-  Stream<QuerySnapshot> querySnapshot;
-  List<QueryDocumentSnapshot> list;
-
-  @override
-  void initState() {
-    setState(() {
-      querySnapshot = FirebaseFirestore.instance
-          .collection('users')
-          .orderBy(
-            'reward_points',
-          )
-          .snapshots();
-      // list = querySnapshot.doc;
-      // print(list);
-    });
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,40 +68,45 @@ class _LeaderBoardState extends State<LeaderBoard> {
                 .orderBy('reward_points', descending: true)
                 .snapshots(),
             builder: (context, snapshot) {
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: snapshot.data.docs.length,
-                itemBuilder: (context, index) {
-                  DocumentSnapshot trainer = snapshot.data.docs[index];
-                  Map getDocs = trainer.data();
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot trainer = snapshot.data.docs[index];
+                    Map getDocs = trainer.data();
 
-                  return Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 2.2),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.supervised_user_circle_rounded,
-                          color: HexColorUtils.getColorFromHex(
-                              CustomColors.hintText),
-                          size: 30,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${getDocs['first_name']} ${getDocs['last_name']}",
+                    return Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 2.2),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.supervised_user_circle_rounded,
+                            color: HexColorUtils.getColorFromHex(
+                                CustomColors.hintText),
+                            size: 30,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "${getDocs['first_name']} ${getDocs['last_name']}",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                          Text(
+                            "${getDocs['reward_points'].toString()} points",
                             style: TextStyle(color: Colors.white),
                           ),
-                        ),
-                        Text(
-                          "${getDocs['reward_points'].toString()} points",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }
+              return Center(
+                child: CircularProgressIndicator(),
               );
             },
           ),

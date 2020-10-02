@@ -2,9 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../utilities/constants/colors.dart';
-import '../../../utilities/hexColor.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
 class DietPage extends StatefulWidget {
   @override
