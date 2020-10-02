@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utilities/utils.dart';
+import '../../../../utilities/utils.dart';
 
 class ProgramPage extends StatefulWidget {
   @override
@@ -16,12 +16,8 @@ class _ProgramPageState extends State<ProgramPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
-      body:
-
-
-      SafeArea(
+      body: SafeArea(
         child: ListView(
-
           //   StreamBuilder<QuerySnapshot>(
           //     stream: FirebaseFirestore.instance.collection('trainer').snapshots(),
           //     builder: (context,snapshot){
@@ -48,7 +44,6 @@ class _ProgramPageState extends State<ProgramPage> {
           //   ),
           // );
 
-   
           shrinkWrap: true,
           children: <Widget>[
             _heading(),
@@ -118,18 +113,19 @@ class _ProgramPageState extends State<ProgramPage> {
 
   Widget _cards() {
     final pHeight = MediaQuery.of(context).size.height;
-    final pWidth = MediaQuery.of(context).size.width
+    final pWidth = MediaQuery.of(context).size.width;
     return Container(
       child: StreamBuilder<QuerySnapshot>(
-
-          stream: FirebaseFirestore.instance.collection('programs').orderBy('Rating',descending: true).snapshots(),
+          stream: FirebaseFirestore.instance
+              .collection('programs')
+              .orderBy('Rating', descending: true)
+              .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');
             }
 
-            if (snapshot.connectionState ==
-                ConnectionState.waiting) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
               return Text("Loading");
             }
             return ListView.builder(
@@ -165,7 +161,7 @@ class _ProgramPageState extends State<ProgramPage> {
                           ),
                           child: Padding(
                             padding:
-                            EdgeInsets.fromLTRB(0, Get.height / 60, 0, 0),
+                                EdgeInsets.fromLTRB(0, Get.height / 60, 0, 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -185,10 +181,6 @@ class _ProgramPageState extends State<ProgramPage> {
                                           letterSpacing: 1.2,
                                           color: HexColorUtils.getColorFromHex(
                                               CustomColors.whiteText),
-
-
-                                          ),
-
                                         ),
                                       ),
                                       SizedBox(width: 20),
@@ -198,52 +190,46 @@ class _ProgramPageState extends State<ProgramPage> {
                                             CustomColors.primary),
                                       ),
                                       Text(
-                                        getDocs['Rating'].toString()  ?? '',
+                                        getDocs['Rating'].toString() ?? '',
                                         style: GoogleFonts.lato(
                                           fontSize: Get.width / 28,
                                           letterSpacing: 1.2,
                                           color: HexColorUtils.getColorFromHex(
-
                                               CustomColors.whiteText),
                                         ),
                                       ),
                                     ],
                                   ),
-
                                 ),
                                 SizedBox(height: pHeight / 90),
                                 Padding(
                                   padding: EdgeInsets.only(left: pWidth / 3),
                                   child: Row(
                                     children: [
-
                                       Icon(
                                         Icons.access_time,
                                         color: HexColorUtils.getColorFromHex(
                                             CustomColors.primary),
                                       ),
                                       Text(
-                                        getDocs['Time'].toString()  ?? '',
+                                        getDocs['Time'].toString() ?? '',
                                         style: GoogleFonts.lato(
                                           fontSize: Get.width / 28,
                                           letterSpacing: 1.2,
                                           color: HexColorUtils.getColorFromHex(
                                               CustomColors.whiteText),
-
                                         ),
                                       ),
                                     ],
                                   ),
-
                                 ),
-
-
                                 SizedBox(height: pHeight / 90),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: EdgeInsets.only(left: pWidth / 20),
+                                      padding:
+                                          EdgeInsets.only(left: pWidth / 20),
                                       child: Text(
                                         'Double your Stamina in',
                                         style: TextStyle(
@@ -255,7 +241,8 @@ class _ProgramPageState extends State<ProgramPage> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: pWidth / 20),
+                                      padding:
+                                          EdgeInsets.only(left: pWidth / 20),
                                       child: Text(
                                         'Just 6 Weeks with ',
                                         style: TextStyle(
@@ -267,7 +254,8 @@ class _ProgramPageState extends State<ProgramPage> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(left: pWidth / 20),
+                                      padding:
+                                          EdgeInsets.only(left: pWidth / 20),
                                       child: Text(
                                         'Absolute Ease',
                                         style: TextStyle(
@@ -280,21 +268,17 @@ class _ProgramPageState extends State<ProgramPage> {
                                     ),
                                   ],
                                 ),
-
                               ],
                             ),
                           ),
                         ),
                         Container(
                           height: pHeight * .16,
-
                           padding: EdgeInsets.fromLTRB(20, 0, 0, pHeight / 50),
                           alignment: FractionalOffset.topLeft,
                           child: Image.network(getDocs['img']),
                         ),
-
                       ],
-
                     ),
                   ),
                 );

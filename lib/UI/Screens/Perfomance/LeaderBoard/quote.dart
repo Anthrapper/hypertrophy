@@ -54,24 +54,26 @@ class QuotePart extends StatelessWidget {
             ],
           ),
           _seperator(),
-          Column(
-            children: [
-              Icon(
-                CustomIcons.sleep,
-                size: Get.height / 18,
-                color: HexColorUtils.getColorFromHex(CustomColors.hintText),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  '8 hrs',
-                  style: TextStyle(
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.hintText),
-                      fontSize: 10),
+          Expanded(
+            child: Column(
+              children: [
+                Icon(
+                  CustomIcons.sleep,
+                  size: Get.height / 18,
+                  color: HexColorUtils.getColorFromHex(CustomColors.hintText),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: Text(
+                    '8 hrs',
+                    style: TextStyle(
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.hintText),
+                        fontSize: 10),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

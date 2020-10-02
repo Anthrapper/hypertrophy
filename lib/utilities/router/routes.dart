@@ -7,15 +7,14 @@ import 'package:hypertrophy/UI/Screens/Forget%20Password/resetpassword.dart';
 
 import 'package:hypertrophy/UI/Screens/OnBoarding/Onboarding.dart';
 import 'package:hypertrophy/UI/Screens/Login/login.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/content.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/details.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/leaderboard.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/programs.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/trainers.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/ContentDetails/content.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/ContentDetails/details.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/LeaderBoard/leaderboard.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/ProgramsTrainers/programs.dart';
+import 'package:hypertrophy/UI/Screens/Perfomance/ProgramsTrainers/trainers.dart';
 
-import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
 import 'package:hypertrophy/UI/Screens/SignUp/SignUp.dart';
-
+import 'package:hypertrophy/UI/Widgets/navbar.dart';
 
 class Routes {
   static final route = [
@@ -70,12 +69,10 @@ class Routes {
     GetPage(
       name: '/detail',
       page: () => DetailPage(),
-
     ),
     GetPage(
       name: '/content',
       page: () => ContentPage(),
-
     ),
   ];
 }

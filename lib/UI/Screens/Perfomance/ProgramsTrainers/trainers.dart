@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:polygon_clipper/polygon_clipper.dart';
 
-import '../../../utilities/utils.dart';
+import '../../../../utilities/utils.dart';
 
 class TrainerPage extends StatefulWidget {
   @override
