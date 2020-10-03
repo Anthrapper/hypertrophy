@@ -7,9 +7,7 @@ import 'package:hypertrophy/utilities/utils.dart';
 class BodyInfo extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final BodyController _bodyController = Get.put(BodyController());
-  final List dropdown = [
-    {"1": "CM", "2": "M"}
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,10 +74,17 @@ class BodyInfo extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    child: CustomDropDown(
-                      hint: 'Cm',
-                      dText: '1',
-                      data: dropdown,
+                    width: Get.width / 6.5,
+                    child: Obx(
+                      () => CustomDropDown(
+                        hint: 'Cm',
+                        dText: 'display',
+                        data: _bodyController.heightData,
+                        onChanged: (val) {
+                          _bodyController.heightChanged(val);
+                        },
+                        drValue: _bodyController.heightValue.value,
+                      ),
                     ),
                   ),
                 ],
@@ -100,21 +105,38 @@ class BodyInfo extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    // height: Get.height / 10,
-                    child: CustomDropDown(
-                      hint: 'Kg',
-                      dText: '1',
-                      data: dropdown,
+                    width: Get.width / 6.5,
+                    child: Obx(
+                      () => CustomDropDown(
+                        hint: 'Kg',
+                        dText: 'display',
+                        data: _bodyController.weightData,
+                        onChanged: (val) {
+                          _bodyController.weightChanged(val);
+                        },
+                        drValue: _bodyController.weightValue.value,
+                      ),
                     ),
                   ),
                 ],
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.toNamed('/goal');
-                },
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(13, Get.height / 35, 13, 25),
+              Padding(
+                padding: EdgeInsets.fromLTRB(13, Get.height / 35, 13, 25),
+                child: GestureDetector(
+                  onTap: () {
+                    if (_bodyController.age.text != null &&
+                        _bodyController.height.text != null &&
+                        _bodyController.weight.text != null) {
+                      String height = _bodyController.height.text +
+                          '' +
+                          _bodyController.heightValue.value;
+                      String weight = _bodyController.weight.text +
+                          '' +
+                          _bodyController.weightValue.value;
+                      _bodyController.addData(
+                          _bodyController.age.text, height, weight);
+                    }
+                  },
                   child: CustomButton(
                     text: 'CONTINUE',
                   ),

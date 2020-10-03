@@ -8,7 +8,6 @@ import 'package:hypertrophy/utilities/utils.dart';
 
 class SignUpController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  Rx<User> _fireBaseUser = Rx<User>();
   Future<String> signUp(
       String email, String password, String fname, String lname) async {
     String retVal = 'Error';
@@ -23,7 +22,9 @@ class SignUpController extends GetxController {
         _user.lName = lname;
         _user.rewardPoints = 100;
         await HyperDb().createUser(_user);
-        retVal = 'success';
+        User user = _auth.currentUser;
+        var uid = user.uid;
+        print(uid);
       });
       if (Get.isDialogOpen) {
         Get.back();
@@ -62,7 +63,7 @@ class SignUpController extends GetxController {
   TextEditingController passController;
   @override
   void onInit() {
-    _fireBaseUser.bindStream(_auth.authStateChanges());
+    // _fireBaseUser.bindStream(_auth.authStateChanges());
     emailController = TextEditingController();
     passController = TextEditingController();
     fname = TextEditingController();

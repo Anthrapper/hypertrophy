@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hypertrophy/UI/Screens/Diet/diet.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/ContentDetails/tab.dart';
-import 'package:hypertrophy/UI/Screens/Perfomance/LeaderBoard/leaderboard.dart';
-import 'package:hypertrophy/UI/Screens/Profile/profile.dart';
+import 'package:hypertrophy/UI/Screens/Home/Diet/diet.dart';
+import 'package:hypertrophy/UI/Screens/Home/Perfomance/ContentDetails/tab.dart';
+import 'package:hypertrophy/UI/Screens/Home/Perfomance/LeaderBoard/leaderboard.dart';
+import 'package:hypertrophy/UI/Screens/Home/Profile/profile.dart';
 import 'package:hypertrophy/utilities/constants/colors.dart';
 import 'package:hypertrophy/utilities/Icons/custom_icons.dart';
 import 'package:hypertrophy/utilities/hexColor.dart';

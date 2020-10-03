@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hypertrophy/Services/Controllers/authController.dart';
 import 'package:hypertrophy/utilities/router/routes.dart';
 
 Future<void> main() async {
@@ -16,11 +17,13 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final AuthController _authController = Get.put(AuthController());
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       getPages: Routes.route,
-      initialRoute: '/onboard',
+      initialRoute: _authController.checkLogin() ? '/onboard' : '/home',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: GoogleFonts.michroma().fontFamily,

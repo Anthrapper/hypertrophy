@@ -2,18 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hypertrophy/Services/Controllers/authController.dart';
 import 'package:hypertrophy/UI/Screens/Login/Forget%20Password/resetLink.dart';
+import 'package:hypertrophy/utilities/utils.dart';
 
-import '../../../utilities/constants/colors.dart';
-import '../../../utilities/hexColor.dart';
-
-class ProfilePage extends StatefulWidget {
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
-  @override
+class ProfilePage extends StatelessWidget {
+  final AuthController _authController = Get.put(AuthController());
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
@@ -158,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
               padding: EdgeInsets.fromLTRB(
                   20, Get.height / 40, Get.width / 5, Get.height / 40),
               child: Text(
-                'Logs',
+                'Log Out',
                 style: GoogleFonts.sourceSansPro(
                     fontSize: Get.width / 25,
                     color:
@@ -166,7 +160,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     letterSpacing: 1.6),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              _authController.signOut();
+            },
           ),
         ],
       ),
