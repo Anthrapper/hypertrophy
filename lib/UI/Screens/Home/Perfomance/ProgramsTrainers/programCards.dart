@@ -16,22 +16,29 @@ class _ProgramCardsState extends State<ProgramCards> {
     final pWidth = MediaQuery.of(context).size.width;
     return Container(
       child: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection('programs')
-            .orderBy('Rating', descending: true)
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (context, index) {
-                DocumentSnapshot program = snapshot.data.docs[index];
-                Map getDocs = program.data();
+          stream: FirebaseFirestore.instance
+              .collection('programs')
+              .orderBy('Rating', descending: true)
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
 
-                return SingleChildScrollView(
-                  child: Container(
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Text("Loading");
+            }
+            if (snapshot.hasData) {
+              return ListView.builder(
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: snapshot.data.docs.length,
+                itemBuilder: (context, index) {
+                  DocumentSnapshot program = snapshot.data.docs[index];
+                  Map getDocs = program.data();
+
+                  return Container(
                     padding: EdgeInsets.fromLTRB(
                         0, Get.height / 28, Get.width / 20, 0),
                     child: Stack(
@@ -173,16 +180,15 @@ class _ProgramCardsState extends State<ProgramCards> {
                         ),
                       ],
                     ),
-                  ),
-                );
-              },
-            );
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
+                  );
+                },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          }),
     );
   }
 }

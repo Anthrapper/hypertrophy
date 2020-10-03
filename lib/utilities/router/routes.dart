@@ -2,8 +2,6 @@ import 'package:get/get.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/BodyInfo.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/GenderSelection/GenderSelection.dart';
 import 'package:hypertrophy/UI/Screens/BodyInformation/Goal/Goal.dart';
-import 'package:hypertrophy/UI/Screens/Home/Perfomance/ContentDetails/content.dart';
-import 'package:hypertrophy/UI/Screens/Home/Perfomance/ContentDetails/details.dart';
 import 'package:hypertrophy/UI/Screens/Home/Perfomance/LeaderBoard/leaderboard.dart';
 import 'package:hypertrophy/UI/Screens/Home/Profile/profile.dart';
 import 'package:hypertrophy/UI/Screens/Login/Forget%20Password/resetLink.dart';
@@ -58,14 +56,7 @@ class Routes {
       name: '/home',
       page: () => NavBar(),
     ),
-    GetPage(
-      name: '/detail',
-      page: () => DetailPage(),
-    ),
-    GetPage(
-      name: '/content',
-      page: () => ContentPage(),
-    ),
+
     GetPage(
       name: '/profile',
       page: () => ProfilePage(),

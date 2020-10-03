@@ -15,6 +15,8 @@ class HyperDb {
           'first_name': user.fName,
           'last_name': user.lName,
           'reward_points': user.rewardPoints,
+          'pic':
+              'https://www.alchinlong.com/wp-content/uploads/2015/09/sample-profile.png',
         },
       );
       retVal = 'Success';

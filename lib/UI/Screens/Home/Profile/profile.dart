@@ -2,12 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hypertrophy/Services/Controllers/authController.dart';
-import 'package:hypertrophy/UI/Screens/Login/Forget%20Password/resetLink.dart';
+import 'package:hypertrophy/Services/Controllers/HomeControllers/profileController.dart';
 import 'package:hypertrophy/utilities/utils.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:share/share.dart';
 
 class ProfilePage extends StatelessWidget {
-  final AuthController _authController = Get.put(AuthController());
+  final ProfileController _profileController = Get.put(ProfileController());
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: HexColorUtils.getColorFromHex(CustomColors.bg),
@@ -46,39 +48,56 @@ class ProfilePage extends StatelessWidget {
   Widget _intro() {
     return Padding(
       padding: const EdgeInsets.all(30),
-      child: Padding(
-        padding: const EdgeInsets.only(bottom: 10),
-        child: Container(
-            child: Row(
+      child: Container(
+        child: Row(
           children: <Widget>[
-            CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/images/Rectangle 25.png'),
+            Obx(
+              () => GestureDetector(
+                onTap: () {
+                  _profileController.uploadImage();
+                },
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: _profileController.pic.value == null
+                      ? AssetImage('assets/images/Rectangle 25.png')
+                      : NetworkImage(_profileController.pic.value),
+                ),
+              ),
             ),
             SizedBox(width: 10),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'AMY SMITH',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color:
-                        HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                    fontSize: Get.width / 21,
-                    letterSpacing: 1.6,
+                Obx(
+                  () => Text(
+                    _profileController.name.value,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color:
+                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
+                      fontSize: Get.width / 30,
+                      letterSpacing: 1.6,
+                    ),
                   ),
                 ),
                 SizedBox(height: Get.height / 70),
-                Text('Strength Training',
-                    style: TextStyle(
-                      fontSize: Get.width / 30,
-                      color: HexColorUtils.getColorFromHex(
-                          CustomColors.textfieldText),
-                    )),
+                Padding(
+                  padding: const EdgeInsets.only(left: 4.0),
+                  child: Obx(
+                    () => Text(
+                      _profileController.goal.value,
+                      style: TextStyle(
+                        fontSize: Get.width / 40,
+                        color: HexColorUtils.getColorFromHex(
+                            CustomColors.textfieldText),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
-        )),
+        ),
       ),
     );
   }
@@ -111,7 +130,9 @@ class ProfilePage extends StatelessWidget {
                     letterSpacing: 1.6),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.toNamed('/goal');
+            },
           ),
           InkWell(
             child: Padding(
@@ -126,7 +147,9 @@ class ProfilePage extends StatelessWidget {
                     letterSpacing: 1.6),
               ),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.toNamed('/bodyinfo');
+            },
           ),
           InkWell(
             child: Padding(
@@ -142,9 +165,7 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Get.to(
-                LinkPage(),
-              );
+              Get.toNamed('/link');
             },
           ),
           InkWell(
@@ -152,7 +173,7 @@ class ProfilePage extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(
                   20, Get.height / 40, Get.width / 5, Get.height / 40),
               child: Text(
-                'Log Out',
+                'Logs',
                 style: GoogleFonts.sourceSansPro(
                     fontSize: Get.width / 25,
                     color:
@@ -160,9 +181,7 @@ class ProfilePage extends StatelessWidget {
                     letterSpacing: 1.6),
               ),
             ),
-            onTap: () {
-              _authController.signOut();
-            },
+            onTap: () {},
           ),
         ],
       ),
@@ -180,6 +199,15 @@ class ProfilePage extends StatelessWidget {
   }
 
   Widget _list2() {
+    Future<void> _launchURL(String url) async {
+      const url = 'https://flutter.dev';
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -209,7 +237,9 @@ class ProfilePage extends StatelessWidget {
                   letterSpacing: 1.6),
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            _launchURL('');
+          },
         ),
         InkWell(
           child: Padding(
@@ -223,7 +253,10 @@ class ProfilePage extends StatelessWidget {
                   letterSpacing: 1.6),
             ),
           ),
-          onTap: () {},
+          onTap: () {
+            Share.share('check out this amazing app https://example.com',
+                subject: 'Look what I made!');
+          },
         ),
       ],
     );

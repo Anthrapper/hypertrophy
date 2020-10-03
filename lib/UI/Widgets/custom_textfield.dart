@@ -34,7 +34,7 @@ class CustomTextField extends StatelessWidget {
         child: TextFormField(
           autofocus: false,
           style: TextStyle(
-            letterSpacing: 1.4,
+            letterSpacing: 1.1,
             color: HexColorUtils.getColorFromHex(CustomColors.hintText),
             fontSize: 13,
           ),

@@ -24,8 +24,7 @@ class LinkController extends GetxController {
         if (Get.isDialogOpen) {
           Get.back();
         }
-        print(Get.arguments);
-        Get.toNamed('/login');
+        Get.back();
       });
     } catch (e) {
       // Get.snackbar(

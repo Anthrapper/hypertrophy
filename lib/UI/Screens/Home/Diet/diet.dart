@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,9 +20,6 @@ class _DietPageState extends State<DietPage> {
           children: <Widget>[
             _heading(),
             _search(),
-            _cards(),
-            _cards(),
-            _cards(),
             _cards(),
           ],
         ),
@@ -90,76 +88,103 @@ class _DietPageState extends State<DietPage> {
     final pWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      padding: EdgeInsets.fromLTRB(25, 0, Get.width / 20, 0),
-      child: Stack(
-        children: <Widget>[
-          Container(
-            height: pHeight * 0.18,
-            width: pWidth,
-            margin: EdgeInsets.only(left: Get.width / 30),
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              color: HexColorUtils.getColorFromHex(CustomColors.background),
-              borderRadius: BorderRadius.circular(8.0),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10.0,
-                ),
-              ],
-            ),
-            child: Padding(
-              padding:
-                  EdgeInsets.fromLTRB(Get.width / 4, Get.height / 30, 0, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    'Eggs',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                      fontSize: Get.width / 21,
-                      letterSpacing: 1.6,
-                    ),
+      child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('diet').snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            }
+
+            return ListView.builder(
+              physics: ClampingScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                DocumentSnapshot diet = snapshot.data.docs[index];
+                Map getDocs = diet.data();
+
+                return Container(
+                  padding: EdgeInsets.fromLTRB(25, 0, Get.width / 20, 0),
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: pHeight * 0.18,
+                        width: pWidth,
+                        margin: EdgeInsets.only(left: Get.width / 30),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: HexColorUtils.getColorFromHex(
+                              CustomColors.background),
+                          borderRadius: BorderRadius.circular(8.0),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10.0,
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(
+                              Get.width / 4, Get.height / 30, 0, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                getDocs['food'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: HexColorUtils.getColorFromHex(
+                                      CustomColors.whiteText),
+                                  fontSize: Get.width / 21,
+                                  letterSpacing: 1.6,
+                                ),
+                              ),
+                              SizedBox(height: pHeight / 90),
+                              Text(
+                                getDocs['kcal'] + ' kcal',
+                                style: GoogleFonts.sourceSansPro(
+                                  fontSize: Get.width / 30,
+                                  color: HexColorUtils.getColorFromHex(
+                                      CustomColors.whiteText),
+                                ),
+                              ),
+                              SizedBox(height: pHeight / 70),
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  color: Colors.white,
+                                  borderRadius:
+                                      BorderRadius.circular(pHeight * 0.005),
+                                ),
+                                height: pHeight * .035,
+                                width: pWidth * 0.26,
+                                child: Text(
+                                  'Tags',
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: Get.width / 20),
+                        alignment: FractionalOffset.centerLeft,
+                        child: Image(
+                          image: NetworkImage(getDocs['img']),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: pHeight / 90),
-                  Text(
-                    '100 kcal',
-                    style: GoogleFonts.sourceSansPro(
-                      fontSize: Get.width / 30,
-                      color:
-                          HexColorUtils.getColorFromHex(CustomColors.whiteText),
-                    ),
-                  ),
-                  SizedBox(height: pHeight / 70),
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(pHeight * 0.005),
-                    ),
-                    height: pHeight * .035,
-                    width: pWidth * 0.26,
-                    child: Text(
-                      'Tags',
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: Get.width / 20),
-            alignment: FractionalOffset.centerLeft,
-            child: Image(
-              image: AssetImage('assets/images/Rectangle 20.png'),
-            ),
-          ),
-        ],
-      ),
+                );
+              },
+            );
+          }),
     );
   }
 }

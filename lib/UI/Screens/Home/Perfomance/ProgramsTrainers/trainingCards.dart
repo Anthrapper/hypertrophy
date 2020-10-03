@@ -22,10 +22,8 @@ class _TrainingCardsState extends State<TrainingCards> {
           Get.to(Nav());
         },
         child: StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection('trainer')
-                .orderBy('Rating', descending: true)
-                .snapshots(),
+            stream:
+                FirebaseFirestore.instance.collection('trainer').snapshots(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text('Something went wrong');
@@ -34,19 +32,23 @@ class _TrainingCardsState extends State<TrainingCards> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Text("Loading");
               }
-              if (snapshot.hasData) {
-                return ListView.builder(
-                  physics: ClampingScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: snapshot.data.docs.length,
-                  itemBuilder: (context, index) {
-                    DocumentSnapshot trainer = snapshot.data.docs[index];
-                    Map getDocs = trainer.data();
 
-                    return Container(
-                      padding: EdgeInsets.fromLTRB(
-                          0, Get.height / 28, Get.width / 20, 0),
+              return ListView.builder(
+                physics: ClampingScrollPhysics(),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: snapshot.data.docs.length,
+                itemBuilder: (context, index) {
+                  DocumentSnapshot trainer = snapshot.data.docs[index];
+                  Map getDocs = trainer.data();
+
+                  return Container(
+                    padding: EdgeInsets.fromLTRB(
+                        0, Get.height / 28, Get.width / 20, 0),
+                    child: InkWell(
+                      onTap: () {
+                        Get.to(Nav());
+                      },
                       child: Stack(
                         children: <Widget>[
                           Container(
@@ -217,13 +219,10 @@ class _TrainingCardsState extends State<TrainingCards> {
                           ),
                         ],
                       ),
-                    );
-                  },
-                );
-              } else
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
+                    ),
+                  );
+                },
+              );
             }),
       ),
     );
